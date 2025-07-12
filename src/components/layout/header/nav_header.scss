@@ -1,0 +1,13 @@
+@import "../../../assets/scss/common.scss";
+
+.nav_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    //background: $white;
+    padding: 0 16px;
+
+    .drop_down {
+        cursor: pointer;
+    }
+}

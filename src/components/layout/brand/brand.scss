@@ -1,0 +1,23 @@
+@import "../../../assets/scss/common.scss";
+
+.brand {
+    @include flexContentCenter;
+    width: 100%;
+    height: 64px;
+    font-size: 26px;
+    color: $black;
+    background-color: $black;
+
+    .text {
+        margin-left: 5px;
+        @include transition(all 0.3s ease-in-out);
+    }
+}
+
+.brand.collapsed {
+    .text {
+        width: 0;
+        visibility: hidden;
+        opacity: 0;
+    }
+}

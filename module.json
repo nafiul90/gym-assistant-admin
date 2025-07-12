@@ -1,0 +1,17 @@
+[
+    {
+        "moduleName": "NewTest1",
+        "modelProperties": "name@S@R,email@S@R,password@S@R,createdAt@D@R,updatedAt@D@R",
+        "moduleType": "fm"
+    },
+    {
+        "moduleName": "NewTest2",
+        "modelProperties": "message@S,files@A",
+        "moduleType": "fm"
+    },
+    {
+        "moduleName": "JobTest",
+        "modelProperties": "message@S,files@A",
+        "moduleType": "fm"
+    }
+]

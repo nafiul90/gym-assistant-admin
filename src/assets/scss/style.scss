@@ -1,0 +1,344 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import "./common.scss";
+
+body {
+    margin: 0;
+    //font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    //"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    //sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+//code {
+//  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+//  monospace;
+//}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: darkgray #dddddd;
+}
+
+/* Target's on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #dddddd;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: darkgray;
+}
+
+.ant-table {
+    .ant-table-body {
+        scrollbar-width: thin;
+        scrollbar-color: darkgray #dddddd;
+
+        &::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #dddddd;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: darkgray;
+        }
+    }
+}
+
+.ant-descriptions-item-label {
+    // background-color: $very_light_primary !important;
+}
+
+/* ============  Start Custom CSS =========== */
+
+/* APP layout */
+.app-wrapper {
+    @include fullDisplay;
+    //@include flexContentCenter;
+
+    .app-page {
+        margin: 5px 16px;
+
+        .page-header {
+            margin-bottom: 2px;
+        }
+
+        .page-content {
+            overflow-y: auto;
+            height: calc(100vh - 158px);
+            //background: #fff;
+            margin-bottom: 10px;
+            padding: 16px 24px;
+            border-radius: 20px;
+        }
+    }
+}
+
+.form_wrapper {
+    @include flexContentCenter;
+
+    .form {
+        width: 100%;
+        //max-width: 1366px;
+        padding: $padding;
+    }
+
+    .form-margin-top1 {
+        margin-top: 20px;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .form_button {
+        display: block;
+        width: 100%;
+    }
+}
+
+.canceled_row {
+    //background-color: rgb(255, 226, 226);
+}
+
+.ant-table-thead
+    > tr
+    > th:not(.ant-table-selection-column):not(
+        .ant-table-row-expand-icon-cell
+    ):not([colspan]):before {
+    position: absolute;
+    bottom: -1px !important;
+    top: unset !important;
+    right: 50% !important;
+    width: 50% !important;
+    height: 1px !important;
+    // background-color: blue !important; //#ebebeb !important;
+    transform: translateY(-50%);
+    transition: background-color 0.3s;
+    content: "";
+}
+ant-page-header-heading-extra {
+    display: flex;
+}
+
+.ant-table-header {
+    border: 1px solid $light-border !important;
+}
+.ant-table-thead > tr > th {
+    background-color: $very_light_primary !important;
+}
+
+.ant-table-thead {
+    .ant-table-cell-fix-right {
+        background-color: $very_light_primary !important;
+    }
+}
+.ant-collapse-header {
+    background-color: white;
+}
+
+.ant-divider {
+    margin: 5px 0px 5px 0px !important;
+    background: rgb(213, 213, 213) !important;
+}
+
+.ant-select-selector {
+    display: flex;
+    align-items: center;
+    border-radius: 6px !important;
+}
+.ant-select-arrow {
+    color: rgb(161, 161, 161) !important;
+}
+
+.ant-empty-description {
+    color: rgb(161, 161, 161) !important;
+}
+
+.ant-input {
+    border-radius: 6px !important;
+    padding: 9px !important;
+    //-webkit-tap-highlight-color: red !important;
+}
+
+.ant-form-item-label > label {
+    color: rgb(44 43 43 / 88%) !important;
+}
+
+.ant-input-number {
+    border-radius: 3px !important;
+    padding: 5px !important;
+    // border: 1px solid $input-border-color !important;
+    width: 100% !important;
+
+    &:hover {
+        // border-color: $primary-color !important;
+    }
+
+    &:focus {
+        border-color: $primary-color !important;
+    }
+}
+
+.ant-input-affix-wrapper {
+    border-radius: 6px !important;
+}
+
+.ant-picker {
+    border-radius: 20px !important;
+    padding: 8px !important;
+}
+
+.phone-number-input {
+    .ant-input {
+        border-radius: 0 20px 20px 0 !important;
+    }
+
+    .ant-input-group-addon {
+        border-radius: 20px 0 0 20px !important;
+    }
+}
+
+.input-prefix {
+    border-radius: 20px 0 0 20px !important;
+}
+
+.btn-suffix {
+    border-radius: 0 20px 20px 0 !important;
+    height: 40px !important;
+}
+
+.discount-details-wrapper {
+    margin: 15px 0;
+    display: flex;
+    gap: 10px;
+
+    .discount-details-card-content {
+        display: flex;
+        justify-content: space-between;
+
+        .discount-details-card-content-right {
+            text-align: right;
+            font-weight: 500;
+        }
+    }
+}
+
+.ant-input-disabled,
+.ant-input[disabled] {
+    color: rgb(255 255 255 / 64%) !important;
+}
+
+.button-1 {
+    color: #ffcc00;
+    font-weight: 200;
+    border-radius: 5px;
+    height: 40px;
+}
+.button-2 {
+    height: 40px !important;
+}
+
+.edit-icon {
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: -20px;
+}
+
+.lock-icon {
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    border: none !important;
+}
+
+.search-input {
+    //height: 40px;
+}
+
+.ant-input-affix-wrapper {
+    height: 40px;
+}
+
+.ant-btn-primary[disabled],
+.ant-btn-primary[disabled]:active,
+.ant-btn-primary[disabled]:focus,
+.ant-btn-primary[disabled]:hover {
+    color: rgb(255 255 255 / 64%) !important;
+}
+
+.back-button {
+    margin-right: 10px !important;
+    color: $back-button-color !important;
+}
+
+.ant-input-status-error:not(.ant-input-disabled):not(
+        .ant-input-borderless
+    ).ant-input,
+.ant-input-status-error:not(.ant-input-disabled):not(
+        .ant-input-borderless
+    ).ant-input:hover {
+    background-color: transparent !important;
+    border-color: $primary-color;
+    color: white !important;
+}
+
+.ant-input-affix-wrapper-status-error:not(
+        .ant-input-affix-wrapper-disabled
+    ):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper,
+.ant-input-affix-wrapper-status-error:not(
+        .ant-input-affix-wrapper-disabled
+    ):not(.ant-input-affix-wrapper-borderless).ant-input-affix-wrapper:hover {
+    background-color: transparent !important;
+    border-color: $primary-color;
+    color: white !important;
+}
+
+// .ant-form-item-with-help {
+//   margin-bottom: 30px !important;
+// }
+
+.ant-table-tbody > tr.ant-table-row:hover > td,
+.ant-table-tbody > tr > td.ant-table-cell-row-hover {
+    background: $input-border-color;
+}
+
+@media print {
+    /* Styles for printing */
+    .no-print {
+        display: none;
+    }
+}
+
+.missing-row {
+    background-color: rgb(255, 0, 0);
+}
+.missMatch {
+    background-color: rgb(182, 121, 8);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    //border: 3px solid #143a4b !important;
+    //-webkit-text-fill-color: yellow !important;
+    -webkit-box-shadow: 0 0 0 1000px $input-border-color inset;
+}
+
+.ant-btn-default {
+    line-height: 0px !important;
+}
+
+.ant-select-in-form-item {
+    height: 100% !important;
+}

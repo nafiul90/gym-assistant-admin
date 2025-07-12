@@ -1,0 +1,66 @@
+/* Variable */
+@import "colors";
+
+$white: #ffffff;
+$black: #000000;
+$red: #ff0000;
+$border_color: #dddddd;
+$very_light_primary: #edf5ff;
+$primary: #2758d1;
+$light-border: #bbd5fa;
+
+/* Common */
+$padding: 16px;
+
+//default layout
+.app_page {
+    height: calc(100vh - 25px);
+}
+
+/* Mixin */
+@mixin transform($property) {
+    -webkit-transform: $property;
+    -ms-transform: $property;
+    transform: $property;
+}
+
+@mixin transition($property) {
+    -webkit-transition: $property;
+    -ms-transition: $property;
+    transition: $property;
+}
+
+@mixin flexContentCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flexContentRightAlign {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@mixin fullDisplay {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.form-input-group-wrapper {
+    border: 1px solid $input-border-color;
+    border-radius: 20px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.image-upload-sm {
+    @media screen and (max-width: 768px) {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center !important;
+    }
+}
+
+.ant-layout-sider-zero-width-trigger {
+    top: 0px !important;
+}

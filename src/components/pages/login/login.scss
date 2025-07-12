@@ -1,0 +1,49 @@
+@import "../../../assets/scss/common.scss";
+
+.login_form_wrapper {
+    @include fullDisplay;
+    text-align: center;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (max-width: 830px) {
+        justify-content: center;
+        padding: 0;
+        width: 100%;
+    }
+
+    @media (max-width: 830px) {
+        .login_form {
+            width: 300px !important;
+        }
+    }
+
+    img {
+        height: 50px;
+        width: 100px;
+    }
+
+    .login_form {
+        width: 400px;
+        //border: 1px solid $border_color;
+        border-radius: 20px;
+        padding: $padding;
+        margin: 20px auto;
+        // background-color: $dark-color-2;
+    }
+
+    .login_title {
+        text-align: center;
+    }
+
+    .login_form_forgot {
+        float: right;
+    }
+
+    .login_form_button {
+        display: block;
+        width: 100%;
+    }
+}
