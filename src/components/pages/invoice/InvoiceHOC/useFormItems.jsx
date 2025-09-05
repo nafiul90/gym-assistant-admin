@@ -27,6 +27,7 @@ const useFormItems = (edit) => {
                 "Service Charge",
                 "Gym Assistant Software",
                 "Custom Gym Management Software",
+                "Biotime License",
             ],
             className: "col-span-12 sm:col-span-4",
         },

@@ -9,8 +9,8 @@ export const FILE_URL = `https://api.gymassistant.xyz`;
 
 const API_URL = `${ROOT_URL}`;
 
-export const UPLOAD_IMAGE_URL = `${API_URL}/upload-image`;
-export const UPLOAD_FILE_URL = `${API_URL}/upload-file`;
+export const UPLOAD_IMAGE_URL = `${API_URL}/upload`;
+export const UPLOAD_FILE_URL = `${API_URL}/upload`;
 
 // auth
 export const LOGIN_URL = `${API_URL}/auth/login`;
@@ -103,6 +103,20 @@ export const DELETE_SMSRECORDS_URL = `${API_URL}/sms-records/delete`;
 export const EXTENDED_USER_API_URL = `${API_URL}/payments/extended-users`;
 export const USER_WITH_NO_PAYMENT_API_URL = `${API_URL}/payments/users-with-no-payment`;
 
+// payments
+
+export const GET_ALL_PAYMENTS = `${API_URL}/payments`;
+export const GET_PAYMENTS_BY_ID = `${API_URL}/payments/id`;
+export const CREATE_PAYMENTS_URL = `${API_URL}/payments/create`;
+export const UPDATE_PAYMENTS_URL = `${API_URL}/payments/update`;
+export const DELETE_PAYMENTS_URL = `${API_URL}/payments/delete`;
+// partner
+
+export const GET_ALL_PARTNER = `${API_URL}/partners`;
+export const GET_PARTNER_BY_ID = `${API_URL}/partners/id`;
+export const CREATE_PARTNER_URL = `${API_URL}/partners/create`;
+export const UPDATE_PARTNER_URL = `${API_URL}/partners/update`;
+export const DELETE_PARTNER_URL = `${API_URL}/partners/delete`;
 // CONSTANT_EXPORTS_AREA
 export const ACCESS_TOKEN = "x-auth-token";
 export const PROFILE = "e-book-profile";

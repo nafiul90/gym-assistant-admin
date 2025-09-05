@@ -4,7 +4,7 @@ import encryptedAxios from "./encryptedAxios";
 
 export default class UploadService {
     static upload(path, data) {
-        return encryptedAxios.post(path, data, UploadService.getAuthHeader());
+        return axios.post(path, data, UploadService.getAuthHeader());
     }
 
     static getAuthHeader() {

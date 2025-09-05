@@ -36,9 +36,7 @@ const UserListView = () => {
     const { dataList, loadingList, totalElements, getAllData } =
         useGetAllData(GET_ALL_USER);
     const query = useQuery();
-    console.log("query ", query);
     const [expireLoading, setExpireLoading] = useState(false);
-    const [loadingExtendedUsers, setLoadingExtendedUsers] = useState(false);
 
     const columns = useUserColumns({ callback: getAllData });
 

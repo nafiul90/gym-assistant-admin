@@ -1,23 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import TableActionButtons from "../../../common/TablesActionButtons";
-import { DELETE_GYM_URL } from "../../../../helpers/Constant";
+import {
+    CREATE_INVOICE_URL,
+    DELETE_GYM_URL,
+} from "../../../../helpers/Constant";
 import { useCheckScreenType } from "../../../common/useCheckScreenType";
-import { Button, Image } from "antd";
-import CustomImage from "../../../common/CustomImage";
+import { Button } from "antd";
+
 import { Link } from "react-router-dom";
 import { DEVICE_LIST_PATH } from "../../../../routes/Slugs";
 import MissingUsersCheck from "../MissingUsersCheck";
+import api from "../../../../services/Api";
+import {
+    getAllQueryParams,
+    getLocalDate,
+    useQuery,
+} from "../../../../helpers/Utils";
+import { Toast } from "../../../common/Toast";
+import moment from "moment";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const useColumns = (props) => {
     const screenType = useCheckScreenType();
 
     return [
         {
-            title: "Image",
-            dataIndex: "logo",
-            key: "image",
-            width: 60,
-            render: (e) => <CustomImage width={50} src={`${e}`} />,
+            title: "Payment",
+            key: "payment",
+            width: 80,
+            render: (e) => <InvoiceStatus gym={e} callback={props.callback} />,
         },
         {
             title: "Name",
@@ -109,6 +120,76 @@ const useColumns = (props) => {
             ),
         },
     ];
+};
+
+const InvoiceStatus = ({ gym, callback }) => {
+    const [loading, setLoading] = useState(false);
+    const query = useQuery();
+
+    // console.log("query -=> ", useLocation());
+
+    const createInvoice = async () => {
+        api.createData(
+            {
+                url: CREATE_INVOICE_URL,
+                setLoading,
+                body: {
+                    date: new Date(),
+                    gym: gym._id,
+                    type: "Monthly Fee",
+                    currency: "BDT",
+                    items: [
+                        {
+                            title: `Monthly fee for ${getLocalDate(new Date(), "MMMM YYYY")}`,
+                            unitPrice: gym.subscriptionFee,
+                            unitType: "Gym",
+                            quantity: 1,
+                        },
+                    ],
+                },
+            },
+            (_) => {
+                callback(getAllQueryParams(query));
+                Toast("success", "Success", "Invoice created successfully.");
+            }
+        );
+    };
+
+    const dueMonths = (clearTo) => {
+        if (!clearTo) return 1;
+        clearTo = new Date(clearTo);
+        const today = new Date();
+        return today.getMonth() - clearTo.getMonth();
+    };
+
+    const invoicePending = (lastDate) => {
+        if (!lastDate) return 1;
+        lastDate = new Date(lastDate);
+        const today = new Date();
+        return today.getMonth() - lastDate.getMonth();
+    };
+
+    return (
+        <div>
+            {invoicePending(gym.lastInvoiceDate) ? (
+                loading ? (
+                    <LoadingOutlined />
+                ) : (
+                    <Button type="primary" onClick={createInvoice}>
+                        Create Invoice
+                    </Button>
+                )
+            ) : null}
+            {dueMonths(gym.paymentClearTo) ? (
+                <p className="text-red-600">
+                    Due: {dueMonths(gym.paymentClearTo)} Months
+                </p>
+            ) : (
+                <p className="text-green">Paid</p>
+            )}
+            Fee: {gym.subscriptionFee}
+        </div>
+    );
 };
 
 export default useColumns;

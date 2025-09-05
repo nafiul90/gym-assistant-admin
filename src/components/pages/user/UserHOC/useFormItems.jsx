@@ -44,6 +44,40 @@ const useFormItems = (editing) => {
             className: "col-span-6",
             placeholder: "e.g. 103",
         },
+        {
+            label: "BioTime Id",
+            name: "bioTimeId",
+            className: "col-span-6",
+            placeholder: "e.g. 103",
+        },
+        {
+            label: "Area list",
+            name: "areaList",
+            className: "col-span-12",
+            boxClassName: "grid grid-flow-row-dense grid-cols-12 gap-x-3",
+            formClassName: "col-span-12 sm:col-span-6",
+            type: "multiple-form",
+            items: [
+                {
+                    label: "Title",
+                    name: "title",
+                    className: "col-span-12 sm:col-span-6",
+                },
+                {
+                    label: "Id",
+                    name: "id",
+                    className: "col-span-12 sm:col-span-6",
+                    type: "number",
+                },
+                {
+                    label: "Gender",
+                    name: "gender",
+                    className: "col-span-12 sm:col-span-6",
+                    type: "dropdown",
+                    options: ["MALE", "FEMALE", "BOTH"],
+                },
+            ],
+        },
 
         {
             label: "Access List",

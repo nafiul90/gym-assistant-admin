@@ -210,6 +210,75 @@ const useFormItems = (fileList) => {
             className: "col-span-6",
             type: "switch",
         },
+        {
+            label: "OTP Required for payment",
+            name: "otpRequiredForPayment",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "SMS receipt",
+            name: "smsReceiptEnabled",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "Verification on discount",
+            name: "verificationOnDiscount",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "Verification on extension",
+            name: "verificationIsRequiredOnExtension",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "Hide partner",
+            name: "hidePartner",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "Active Clone",
+            name: "activeClone",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "Disable On Due",
+            name: "disableOnDue",
+            className: "col-span-6",
+            type: "number",
+        },
+        {
+            label: "Required Admin Verification For Payment",
+            name: "requiredAdminVerificationForPayment",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "Gym payment expired",
+            name: "paymentExpired",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "smsApiKey",
+            name: "smsApiKey",
+            className: "col-span-6",
+        },
+        {
+            label: "smsSecretKey",
+            name: "smsSecretKey",
+            className: "col-span-6",
+        },
+        {
+            label: "smsCallerID",
+            name: "smsCallerID",
+            className: "col-span-6",
+        },
     ];
 
     return formItems;

@@ -13,8 +13,8 @@ const ImageUploader = forwardRef((props, ref) => {
         ...props.fileList.map((e, i) => ({
             uid: i,
             status: "done",
-            url: IMAGE_URL + "/" + e
-        }))
+            url: IMAGE_URL + "/" + e,
+        })),
     ]);
 
     const onRemove = (file) => {
@@ -75,8 +75,8 @@ const ImageUploader = forwardRef((props, ref) => {
                 {
                     uid: fileList.length,
                     status: "done",
-                    url: `${IMAGE_URL}/${res.data?.url}`
-                }
+                    url: `${IMAGE_URL}/${res.data?.url}`,
+                },
             ]);
             props.onUpload(res.data?.url);
         } catch (error) {
@@ -91,7 +91,7 @@ const ImageUploader = forwardRef((props, ref) => {
             setFileList([]);
             setLoading(false);
             setError(false);
-        }
+        },
     }));
 
     return (

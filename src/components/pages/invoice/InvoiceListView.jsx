@@ -10,9 +10,10 @@ import { useGetAllData } from "../../common/useGetAllData";
 import { GET_ALL_INVOICE } from "../../../helpers/Constant";
 import { Link } from "react-router-dom";
 import { ScrollConfig } from "../../../helpers/Utils";
+import LoadingSuspense from "../../common/LoadingSuspense";
 
 const InvoiceListView = () => {
-    const { dataList, loadingList, totalElements, getAllData } =
+    const { dataList, loadingList, totalElements, getAllData, summary } =
         useGetAllData(GET_ALL_INVOICE);
 
     const columns = useInvoiceColumns({ callback: getAllData });
@@ -40,6 +41,17 @@ const InvoiceListView = () => {
                     filterItems={useInvoiceFilterItems()}
                     currentPath={INVOICE_LIST_PATH}
                 />
+                {loadingList ? (
+                    <LoadingSuspense />
+                ) : (
+                    <div className="flex gap-4 mb-2">
+                        <p>Total: {summary?.totalFinalPrice}</p>
+                        <p>Paid: {summary?.totalPaid}</p>
+                        <p>
+                            Due: {summary?.totalFinalPrice - summary?.totalPaid}
+                        </p>
+                    </div>
+                )}
 
                 <BaseTable
                     columns={columns}

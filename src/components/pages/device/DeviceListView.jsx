@@ -28,6 +28,7 @@ const DeviceListView = () => {
             dataList.filter(
                 (e) =>
                     (filterData.pin ? e.PIN2 === filterData.pin : true) &&
+                    (filterData.card ? e.Card == filterData.card : true) &&
                     (filterData.name
                         ? typeof e.Name === "string" &&
                           e.Name?.toUpperCase().includes(
@@ -56,7 +57,7 @@ const DeviceListView = () => {
             <div>
                 <BaseFilterComponent
                     title="Search device"
-                    itemCount={10}
+                    itemCount={data.length}
                     searchAction={getData}
                     filterItems={useDeviceFilterItems()}
                     currentPath={DEVICE_LIST_PATH}

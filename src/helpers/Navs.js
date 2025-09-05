@@ -48,14 +48,30 @@ const SidebarMenus = () => {
             children: null,
             permissions: [Permission.ALL],
         },
-        
-    {
+
+        {
             key: "smsRecords",
             label: "smsRecords",
             onClick: () => navigate(PATH.SMSRECORDS_LIST_PATH),
             icon: <PieChartOutlined />,
             children: null,
-            permissions: [Permission.ALL]
+            permissions: [Permission.ALL],
+        },
+        {
+            key: "payments",
+            label: "payments",
+            onClick: () => navigate(PATH.PAYMENTS_LIST_PATH),
+            icon: <PieChartOutlined />,
+            children: null,
+            permissions: [Permission.ALL],
+        },
+        {
+            key: "partner",
+            label: "partner",
+            onClick: () => navigate(PATH.PARTNER_LIST_PATH),
+            icon: <PieChartOutlined />,
+            children: null,
+            permissions: [Permission.ALL],
         }, // NAVS_EXPORTS_AREA
         {
             key: "logout",

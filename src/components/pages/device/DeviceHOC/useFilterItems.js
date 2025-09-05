@@ -12,6 +12,12 @@ const useFilterItems = () => {
             placeholder: "e.g. Abul Kalam Azad",
             className: "col-span-6 md:col-span-4",
         },
+        {
+            label: "Card",
+            name: "card",
+            placeholder: "e.g. Abul Kalam Azad",
+            className: "col-span-6 md:col-span-4",
+        },
     ];
 
     return filterItems;

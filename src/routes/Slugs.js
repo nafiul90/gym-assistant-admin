@@ -63,4 +63,14 @@ export const EDIT_DEVICE_PATH = `${ROOT_PATH}edit-device`;
 export const SMSRECORDS_LIST_PATH = `${ROOT_PATH}smsRecords-list`;
 export const ADD_SMSRECORDS_PATH = `${ROOT_PATH}add-smsRecords`;
 export const EDIT_SMSRECORDS_PATH = `${ROOT_PATH}edit-smsRecords`;
+// payments
+
+export const PAYMENTS_LIST_PATH = `${ROOT_PATH}payments-list`;
+export const ADD_PAYMENTS_PATH = `${ROOT_PATH}add-payments`;
+export const EDIT_PAYMENTS_PATH = `${ROOT_PATH}edit-payments`;
+// partner
+
+export const PARTNER_LIST_PATH = `${ROOT_PATH}partner-list`;
+export const ADD_PARTNER_PATH = `${ROOT_PATH}add-partner`;
+export const EDIT_PARTNER_PATH = `${ROOT_PATH}edit-partner`;
 // SLUGS_EXPORTS_AREA

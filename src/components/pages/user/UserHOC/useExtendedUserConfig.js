@@ -18,6 +18,7 @@ export const useExtendedUserConfig = (users = []) => {
                 "days"
             )
         ),
+        Package: user.paymentPackage?.title,
         "Created By": user.createdBy?.fullName ?? "Prince",
     }));
 };

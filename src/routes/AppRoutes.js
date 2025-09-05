@@ -84,6 +84,22 @@ const AddSmsRecords = lazy(
 const EditSmsRecords = lazy(
     () => import("../components/pages/smsrecords/EditSmsRecords")
 );
+const PaymentsListView = lazy(
+    () => import("../components/pages/payments/PaymentsListView")
+);
+const AddPayments = lazy(
+    () => import("../components/pages/payments/AddPayments")
+);
+const EditPayments = lazy(
+    () => import("../components/pages/payments/EditPayments")
+);
+const PartnerListView = lazy(
+    () => import("../components/pages/partner/PartnerListView")
+);
+const AddPartner = lazy(() => import("../components/pages/partner/AddPartner"));
+const EditPartner = lazy(
+    () => import("../components/pages/partner/EditPartner")
+);
 // ROUTE_IMPORTS_AREA
 
 const AppRoutes = [
@@ -314,6 +330,48 @@ const AppRoutes = [
         exact: true,
         isPrivate: false,
         component: EditSmsRecords,
+        permissions: [Permission.ALL],
+    },
+    {
+        path: PATH.PAYMENTS_LIST_PATH,
+        exact: true,
+        isPrivate: false,
+        component: PaymentsListView,
+        permissions: [Permission.ALL],
+    },
+    {
+        path: PATH.ADD_PAYMENTS_PATH,
+        exact: true,
+        isPrivate: false,
+        component: AddPayments,
+        permissions: [Permission.ALL],
+    },
+    {
+        path: `${PATH.EDIT_PAYMENTS_PATH}/:id`,
+        exact: true,
+        isPrivate: false,
+        component: EditPayments,
+        permissions: [Permission.ALL],
+    },
+    {
+        path: PATH.PARTNER_LIST_PATH,
+        exact: true,
+        isPrivate: false,
+        component: PartnerListView,
+        permissions: [Permission.ALL],
+    },
+    {
+        path: PATH.ADD_PARTNER_PATH,
+        exact: true,
+        isPrivate: false,
+        component: AddPartner,
+        permissions: [Permission.ALL],
+    },
+    {
+        path: `${PATH.EDIT_PARTNER_PATH}/:id`,
+        exact: true,
+        isPrivate: false,
+        component: EditPartner,
         permissions: [Permission.ALL],
     },
 
