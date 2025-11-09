@@ -12,6 +12,13 @@ const useFilterItems = () => {
             className: "col-span-6",
         },
         {
+            label: "Payment Type",
+            name: "paymentType",
+            type: "dropdown",
+            options: ["Income", "Expense"],
+            className: "col-span-6",
+        },
+        {
             label: "Type",
             name: "type",
             type: "dropdown",

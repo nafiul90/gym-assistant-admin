@@ -16,6 +16,7 @@ const useColumns = (props) => {
             render: (e) => (
                 <div>
                     <p>{e.fullName}</p>
+                    <p>{e.gym?.gymName}</p>
                     <p>{e.userId}</p>
                 </div>
             ),

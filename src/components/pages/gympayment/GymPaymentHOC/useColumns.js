@@ -28,7 +28,7 @@ const useColumns = (props) => {
             dataIndex: "invoice",
             key: "invoice",
             width: 100,
-            render: (e) => e?.invoiceId,
+            render: (e) => <div>{e?.invoiceId}</div>,
         },
         {
             title: "Payment Id",
@@ -38,9 +38,15 @@ const useColumns = (props) => {
         },
         {
             title: "Type",
-            dataIndex: "type",
+            // dataIndex: "type",
             key: "type",
             width: 150,
+            render: (e) => (
+                <div>
+                    <p>{e.type}</p>
+                    <p>{e.paymentType}</p>
+                </div>
+            ),
         },
         {
             title: "Paid Amount",

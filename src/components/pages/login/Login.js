@@ -26,10 +26,13 @@ const Login = () => {
     if (authContext.isLogin) return <Navigate to="/" />;
 
     return (
-        <div className="h-screen grid grid-cols-2">
+        <div className="h-screen grid">
             <div className="w-full bg-white p-10 rounded-lg shadow-xl flex flex-col justify-center">
                 <div className="space-y-20">
-                    <div className="w-7/12 mx-auto">
+                    <div className="mx-auto">
+                        <p className="text-xl text-center mb-5">
+                            Gym Assistant Admin
+                        </p>
                         <Form
                             layout="vertical"
                             name="basic"

@@ -10,7 +10,13 @@ const useFormItems = (fileList) => {
             label: "Subscription Fee",
             name: "subscriptionFee",
             type: "number",
-            className: "col-span-6",
+            className: "col-span-3",
+        },
+        {
+            label: "Active",
+            name: "active",
+            className: "col-span-3",
+            type: "switch",
         },
         {
             label: "Due date",
@@ -52,7 +58,7 @@ const useFormItems = (fileList) => {
             name: "paymentInvoiceType",
             className: "col-span-6",
             type: "dropdown",
-            options: ["A4", "roll80"],
+            options: ["A4", "roll80", "A4 X 2"],
         },
         {
             label: "Python Library",
@@ -211,6 +217,12 @@ const useFormItems = (fileList) => {
             type: "switch",
         },
         {
+            label: "Auto invoice number",
+            name: "autoInvoiceNumber",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
             label: "OTP Required for payment",
             name: "otpRequiredForPayment",
             className: "col-span-6",
@@ -278,6 +290,49 @@ const useFormItems = (fileList) => {
             label: "smsCallerID",
             name: "smsCallerID",
             className: "col-span-6",
+        },
+        {
+            label: "Hide total amount",
+            name: "hideTotalAmount",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "Hide Date Range",
+            name: "hideDateRange",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "Hide Total Member",
+            name: "hideTotalMember",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "User id is required",
+            name: "userIdIsRequired",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "Auto generate user id",
+            name: "autoGenerateUserId",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "Set Current Date As Default Starting Date",
+            name: "setCurrentDateAsDefaultStartingDate",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "Show history of",
+            name: "showHistoryOf",
+            className: "col-span-6",
+            type: "dropdown",
+            options: ["One Month", "One Day"],
         },
     ];
 

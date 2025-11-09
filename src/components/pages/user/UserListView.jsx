@@ -50,7 +50,7 @@ const UserListView = () => {
                 },
                 (res) => {
                     Toast("success", "Completed", res.data?.message);
-                }
+                },
             );
     };
 
@@ -105,6 +105,22 @@ const UserListView = () => {
         />
     );
 
+    const expireMemberDetector = (callback) => {
+        return query.get("gym") ? (
+            <Button
+                onClick={() =>
+                    callback({
+                        type: "MEMBER",
+                        activeEntry: true,
+                        paymentStatus: "Package expired",
+                    })
+                }
+            >
+                Expire & active
+            </Button>
+        ) : null;
+    };
+
     return (
         <PageWrapper pageHeader={pageHeader}>
             <div>
@@ -114,6 +130,7 @@ const UserListView = () => {
                     searchAction={getAllData}
                     filterItems={useUserFilterItems()}
                     currentPath={USER_LIST_PATH}
+                    extra={expireMemberDetector}
                 />
 
                 <BaseTable

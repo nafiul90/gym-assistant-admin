@@ -33,7 +33,7 @@ const useColumns = (props) => {
             title: "Id",
             // dataIndex: "invoiceId",
             key: "id",
-            width: 100,
+            width: 150,
             render: (e) => (
                 <div>
                     <p>{e.invoiceId}</p>
@@ -44,7 +44,7 @@ const useColumns = (props) => {
         {
             title: "Gym & Type",
             key: "date",
-            width: 150,
+            width: 200,
             render: (e) => (
                 <div>
                     <p>{e?.gym?.gymName}</p>
@@ -99,7 +99,7 @@ const useColumns = (props) => {
                         <Button
                             onClick={() =>
                                 navigate(
-                                    `${GYMPAYMENT_LIST_PATH}?invoice=${e._id}`
+                                    `${GYMPAYMENT_LIST_PATH}?invoice=${e._id}`,
                                 )
                             }
                         >
@@ -114,7 +114,7 @@ const useColumns = (props) => {
             title: "",
             key: "action",
             fixed: "right",
-            width: screenType.isDesktop ? 250 : 65,
+            width: screenType.isDesktop ? 150 : 65,
             render: (e) => (
                 <div className="flex gap-2">
                     <TableActionButtons

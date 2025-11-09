@@ -1,6 +1,7 @@
 export const ROOT_PATH = "/";
 export const LOGIN_PATH = `${ROOT_PATH}login`;
 export const PROFILE_PATH = `${ROOT_PATH}profile`;
+export const DASHBOARD_PATH = `${ROOT_PATH}dashboard`;
 
 export const CHAT_PAGE_PATH = `${ROOT_PATH}chat`;
 
@@ -73,4 +74,9 @@ export const EDIT_PAYMENTS_PATH = `${ROOT_PATH}edit-payments`;
 export const PARTNER_LIST_PATH = `${ROOT_PATH}partner-list`;
 export const ADD_PARTNER_PATH = `${ROOT_PATH}add-partner`;
 export const EDIT_PARTNER_PATH = `${ROOT_PATH}edit-partner`;
+// businessExpense
+
+export const BUSINESSEXPENSE_LIST_PATH = `${ROOT_PATH}businessExpense-list`;
+export const ADD_BUSINESSEXPENSE_PATH = `${ROOT_PATH}add-businessExpense`;
+export const EDIT_BUSINESSEXPENSE_PATH = `${ROOT_PATH}edit-businessExpense`;
 // SLUGS_EXPORTS_AREA

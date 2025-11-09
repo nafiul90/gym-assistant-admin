@@ -15,6 +15,7 @@ const AddInvoice = () => {
                 <BaseFormComponent
                     formItems={formItems}
                     submitUrl={CREATE_INVOICE_URL}
+                    data={{ invoiceType: "Income", currency: "BDT" }}
                 />
             </div>
         </PageWrapper>

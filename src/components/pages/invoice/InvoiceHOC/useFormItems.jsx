@@ -2,6 +2,13 @@ import { GET_ALL_GYM, UPLOAD_IMAGE_URL } from "../../../../helpers/Constant";
 const useFormItems = (edit) => {
     const formItems = [
         {
+            label: "Invoice Type",
+            name: "invoiceType",
+            type: "dropdown",
+            options: ["Income", "Expense"],
+            className: "col-span-12 sm:col-span-4",
+        },
+        {
             label: "Date",
             name: "date",
             type: "date",
@@ -22,12 +29,19 @@ const useFormItems = (edit) => {
             type: "dropdown",
             options: [
                 "Monthly Fee",
-                "SMS",
                 "RFID Card",
-                "Service Charge",
+                "SMS",
+                "Door setup",
                 "Gym Assistant Software",
                 "Custom Gym Management Software",
+                "Server Bill",
+                "Service Charge",
                 "Biotime License",
+                "Facebook marketing",
+                "Aws",
+                "Client Visit",
+                "Sales Comission",
+                "Others",
             ],
             className: "col-span-12 sm:col-span-4",
         },

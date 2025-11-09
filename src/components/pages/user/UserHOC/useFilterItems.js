@@ -65,6 +65,13 @@ const useFilterItems = () => {
             className: "col-span-6 md:col-span-4",
         },
         {
+            label: "Biotime Id",
+            name: "bioTimeId",
+            type: "number",
+            placeholder: "",
+            className: "col-span-6 md:col-span-4",
+        },
+        {
             label: "Active entry",
             name: "activeEntry",
             type: "switch",
@@ -75,6 +82,12 @@ const useFilterItems = () => {
             label: "Email",
             name: "email",
             placeholder: "nafiul@gmail.com",
+            className: "col-span-6 md:col-span-4",
+        },
+        {
+            label: "User Id",
+            name: "userId",
+            placeholder: "",
             className: "col-span-6 md:col-span-4",
         },
     ];

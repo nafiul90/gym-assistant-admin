@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import { ScrollConfig } from "../../../helpers/Utils";
 
 const GymPaymentListView = () => {
-    const { dataList, loadingList, totalElements, getAllData } =
+    const { dataList, loadingList, totalElements, getAllData, summary } =
         useGetAllData(GET_ALL_GYMPAYMENT);
 
     const columns = useGymPaymentColumns({ callback: getAllData });
@@ -32,6 +32,7 @@ const GymPaymentListView = () => {
                     filterItems={useGymPaymentFilterItems()}
                     currentPath={GYMPAYMENT_LIST_PATH}
                 />
+                <p>Total paid: {summary?.totalPaid}</p>
 
                 <BaseTable
                     columns={columns}

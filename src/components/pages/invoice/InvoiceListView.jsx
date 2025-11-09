@@ -45,10 +45,13 @@ const InvoiceListView = () => {
                     <LoadingSuspense />
                 ) : (
                     <div className="flex gap-4 mb-2">
-                        <p>Total: {summary?.totalFinalPrice}</p>
-                        <p>Paid: {summary?.totalPaid}</p>
+                        <p>Total: {summary?.totalFinalPrice?.toFixed(0)}</p>
+                        <p>Paid: {summary?.totalPaid?.toFixed(0)}</p>
                         <p>
-                            Due: {summary?.totalFinalPrice - summary?.totalPaid}
+                            Due:{" "}
+                            {(
+                                summary?.totalFinalPrice - summary?.totalPaid
+                            )?.toFixed(0)}
                         </p>
                     </div>
                 )}

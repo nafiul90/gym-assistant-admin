@@ -3,102 +3,112 @@ import ChatPage from "../components/pages/chat/ChatPage";
 import Permission from "../helpers/Permission";
 import * as PATH from "./Slugs";
 const ProfileDetails = lazy(
-    () => import("../components/pages/profile/ProfileDetails")
+    () => import("../components/pages/profile/ProfileDetails"),
 );
+const Dashboard = lazy(() => import("../components/pages/dashboard/dashboard"));
 // user
 const UserListView = lazy(
-    () => import("../components/pages/user/UserListView")
+    () => import("../components/pages/user/UserListView"),
 );
 const AddUser = lazy(() => import("../components/pages/user/AddUser"));
 const EditUser = lazy(() => import("../components/pages/user/EditUser"));
 
 // static page
 const StaticPageListView = lazy(
-    () => import("../components/pages/static_page/StaticPageListView")
+    () => import("../components/pages/static_page/StaticPageListView"),
 );
 const AddStaticPage = lazy(
-    () => import("../components/pages/static_page/AddStaticPage")
+    () => import("../components/pages/static_page/AddStaticPage"),
 );
 const EditStaticPage = lazy(
-    () => import("../components/pages/static_page/EditStaticPage")
+    () => import("../components/pages/static_page/EditStaticPage"),
 );
 
 // site config
 const SiteConfigListView = lazy(
-    () => import("../components/pages/site_config/SiteConfigListView")
+    () => import("../components/pages/site_config/SiteConfigListView"),
 );
 const AddSiteConfig = lazy(
-    () => import("../components/pages/site_config/AddSiteConfig")
+    () => import("../components/pages/site_config/AddSiteConfig"),
 );
 const EditSiteConfig = lazy(
-    () => import("../components/pages/site_config/EditSiteConfig")
+    () => import("../components/pages/site_config/EditSiteConfig"),
 );
 
 // book list
 const BookListView = lazy(
-    () => import("../components/pages/book/BookListView")
+    () => import("../components/pages/book/BookListView"),
 );
 const AddBook = lazy(() => import("../components/pages/book/AddBook"));
 const EditBook = lazy(() => import("../components/pages/book/EditBook"));
 
 // book order
 const BookOrderListView = lazy(
-    () => import("../components/pages/bookorder/BookOrderListView")
+    () => import("../components/pages/bookorder/BookOrderListView"),
 );
 const AddBookOrder = lazy(
-    () => import("../components/pages/bookorder/AddBookOrder")
+    () => import("../components/pages/bookorder/AddBookOrder"),
 );
 const EditBookOrder = lazy(
-    () => import("../components/pages/bookorder/EditBookOrder")
+    () => import("../components/pages/bookorder/EditBookOrder"),
 );
 const GymListView = lazy(() => import("../components/pages/gym/GymListView"));
 const AddGym = lazy(() => import("../components/pages/gym/AddGym"));
 const EditGym = lazy(() => import("../components/pages/gym/EditGym"));
 const InvoiceListView = lazy(
-    () => import("../components/pages/invoice/InvoiceListView")
+    () => import("../components/pages/invoice/InvoiceListView"),
 );
 const AddInvoice = lazy(() => import("../components/pages/invoice/AddInvoice"));
 const EditInvoice = lazy(
-    () => import("../components/pages/invoice/EditInvoice")
+    () => import("../components/pages/invoice/EditInvoice"),
 );
 const GymPaymentListView = lazy(
-    () => import("../components/pages/gympayment/GymPaymentListView")
+    () => import("../components/pages/gympayment/GymPaymentListView"),
 );
 const AddGymPayment = lazy(
-    () => import("../components/pages/gympayment/AddGymPayment")
+    () => import("../components/pages/gympayment/AddGymPayment"),
 );
 const EditGymPayment = lazy(
-    () => import("../components/pages/gympayment/EditGymPayment")
+    () => import("../components/pages/gympayment/EditGymPayment"),
 );
 const DeviceListView = lazy(
-    () => import("../components/pages/device/DeviceListView")
+    () => import("../components/pages/device/DeviceListView"),
 );
 const AddDevice = lazy(() => import("../components/pages/device/AddDevice"));
 const EditDevice = lazy(() => import("../components/pages/device/EditDevice"));
 const SmsRecordsListView = lazy(
-    () => import("../components/pages/smsrecords/SmsRecordsListView")
+    () => import("../components/pages/smsrecords/SmsRecordsListView"),
 );
 const AddSmsRecords = lazy(
-    () => import("../components/pages/smsrecords/AddSmsRecords")
+    () => import("../components/pages/smsrecords/AddSmsRecords"),
 );
 const EditSmsRecords = lazy(
-    () => import("../components/pages/smsrecords/EditSmsRecords")
+    () => import("../components/pages/smsrecords/EditSmsRecords"),
 );
 const PaymentsListView = lazy(
-    () => import("../components/pages/payments/PaymentsListView")
+    () => import("../components/pages/payments/PaymentsListView"),
 );
 const AddPayments = lazy(
-    () => import("../components/pages/payments/AddPayments")
+    () => import("../components/pages/payments/AddPayments"),
 );
 const EditPayments = lazy(
-    () => import("../components/pages/payments/EditPayments")
+    () => import("../components/pages/payments/EditPayments"),
 );
 const PartnerListView = lazy(
-    () => import("../components/pages/partner/PartnerListView")
+    () => import("../components/pages/partner/PartnerListView"),
 );
 const AddPartner = lazy(() => import("../components/pages/partner/AddPartner"));
 const EditPartner = lazy(
-    () => import("../components/pages/partner/EditPartner")
+    () => import("../components/pages/partner/EditPartner"),
+);
+const BusinessExpenseListView = lazy(() =>
+    import("../components/pages/businessexpense/BusinessExpenseListView")
+);
+const AddBusinessExpense = lazy(() =>
+    import("../components/pages/businessexpense/AddBusinessExpense")
+);
+const EditBusinessExpense = lazy(() =>
+    import("../components/pages/businessexpense/EditBusinessExpense")
 );
 // ROUTE_IMPORTS_AREA
 
@@ -108,6 +118,13 @@ const AppRoutes = [
         exact: true,
         isPrivate: false,
         component: ProfileDetails,
+        permissions: [Permission.ALL],
+    },
+    {
+        path: PATH.DASHBOARD_PATH,
+        exact: true,
+        isPrivate: false,
+        component: Dashboard,
         permissions: [Permission.ALL],
     },
     {
@@ -374,6 +391,28 @@ const AppRoutes = [
         component: EditPartner,
         permissions: [Permission.ALL],
     },
+    {
+        path: PATH.BUSINESSEXPENSE_LIST_PATH,
+        exact: true,
+        isPrivate: false,
+        component: BusinessExpenseListView,
+        permissions: [Permission.ALL],
+    },
+    {
+        path: PATH.ADD_BUSINESSEXPENSE_PATH,
+        exact: true,
+        isPrivate: false,
+        component: AddBusinessExpense,
+        permissions: [Permission.ALL],
+    },
+    {
+        path: `${PATH.EDIT_BUSINESSEXPENSE_PATH}/:id`,
+        exact: true,
+        isPrivate: false,
+        component: EditBusinessExpense,
+        permissions: [Permission.ALL],
+    },
+    
 
     // ROUTE_DECLARATION_AREA
 ];

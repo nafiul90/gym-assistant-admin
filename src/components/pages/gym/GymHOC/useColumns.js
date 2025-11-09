@@ -27,8 +27,13 @@ const useColumns = (props) => {
         {
             title: "Payment",
             key: "payment",
-            width: 80,
-            render: (e) => <InvoiceStatus gym={e} callback={props.callback} />,
+            width: 150,
+            render: (e) =>
+                e.active ? (
+                    <InvoiceStatus gym={e} callback={props.callback} />
+                ) : (
+                    <div className="h-2 w-2 bg-red-500 rounded-md"></div>
+                ),
         },
         {
             title: "Name",
@@ -39,18 +44,20 @@ const useColumns = (props) => {
         {
             title: "Security",
             key: "gymName",
-            width: 150,
+            width: 180,
             render: (e) => (
                 <div>
                     {!e.deviceList || e.deviceList.length === 0 ? (
                         <p>
-                            Ip: {e.deviceIp} : {e.devicePort}
+                            {e.deviceIp} : {e.devicePort}
                         </p>
                     ) : (
                         e.deviceList.map((d) => <p>{`${d.ip} : ${d.port}`}</p>)
                     )}
-                    <p>Auto disable: {e.autoEntryDisable ? "Yes" : "No"}</p>
-                    <p>Library: {e.pyzk ? "Pyzk" : "TadPhp"}</p>
+                    <p className={e.autoEntryDisable ? "text-green" : ""}>
+                        Auto disable: {e.autoEntryDisable ? "Yes" : "No"}
+                    </p>
+                    <p>{e.bioTime ? "Biotime" : e.pyzk ? "Pyzk" : "TadPhp"}</p>
                 </div>
             ),
         },
@@ -59,6 +66,17 @@ const useColumns = (props) => {
             dataIndex: "smsCredit",
             key: "smsCredit",
             width: 100,
+            render: (e) => (
+                <div
+                    className={
+                        e < 0
+                            ? "px-3 border border-red-300 bg-red-50 rounded-md"
+                            : "px-3 border border-blue-300 bg-blue-50 rounded-md"
+                    }
+                >
+                    {e}
+                </div>
+            ),
         },
         {
             title: "Check",
@@ -77,7 +95,7 @@ const useColumns = (props) => {
                     </div>
                 ) : (
                     <Link to={`${DEVICE_LIST_PATH}/${e._id}`}>
-                        <Button>Check device</Button>
+                        <img src="/f18.png" />
                     </Link>
                 ),
         },
@@ -151,7 +169,7 @@ const InvoiceStatus = ({ gym, callback }) => {
             (_) => {
                 callback(getAllQueryParams(query));
                 Toast("success", "Success", "Invoice created successfully.");
-            }
+            },
         );
     };
 

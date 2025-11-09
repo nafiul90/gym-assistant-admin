@@ -9,6 +9,14 @@ const SidebarMenus = () => {
     const authContext = useContext(AuthContext);
     return [
         {
+            key: "dashboard",
+            label: "Dashboard",
+            onClick: () => navigate(PATH.DASHBOARD_PATH),
+            icon: <PieChartOutlined />,
+            children: null,
+            permissions: [Permission.ALL],
+        },
+        {
             key: "profile",
             label: "Profile",
             onClick: () => navigate(PATH.PROFILE_PATH),
@@ -72,6 +80,14 @@ const SidebarMenus = () => {
             icon: <PieChartOutlined />,
             children: null,
             permissions: [Permission.ALL],
+        }, 
+    {
+            key: "businessExpense",
+            label: "businessExpense",
+            onClick: () => navigate(PATH.BUSINESSEXPENSE_LIST_PATH),
+            icon: <PieChartOutlined />,
+            children: null,
+            permissions: [Permission.ALL]
         }, // NAVS_EXPORTS_AREA
         {
             key: "logout",

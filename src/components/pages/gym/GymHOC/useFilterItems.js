@@ -24,6 +24,12 @@ const useFilterItems = () => {
             className: "col-span-6 md:col-span-6 lg:col-span-3",
             type: "switch",
         },
+        {
+            label: "Active",
+            name: "active",
+            className: "col-span-3",
+            type: "switch",
+        },
     ];
 
     return filterItems;

@@ -2,7 +2,7 @@
 export const SITE_NAME = "GMS Admin";
 export const CURRENCY = "৳";
 // export const ROOT_URL = "http://localhost:8087";
-// export const ROOT_URL = "http://localhost:3001/api/v/1.0.0";
+// export const ROOT_URL = "http://localhost:3051/api/v/1.0.0";
 export const ROOT_URL = "https://api.gymassistant.xyz/api/v/1.0.0";
 export const IMAGE_URL = `https://api.gymassistant.xyz`;
 export const FILE_URL = `https://api.gymassistant.xyz`;
@@ -117,6 +117,13 @@ export const GET_PARTNER_BY_ID = `${API_URL}/partners/id`;
 export const CREATE_PARTNER_URL = `${API_URL}/partners/create`;
 export const UPDATE_PARTNER_URL = `${API_URL}/partners/update`;
 export const DELETE_PARTNER_URL = `${API_URL}/partners/delete`;
+// businessExpense
+
+export const GET_ALL_BUSINESSEXPENSE = `${API_URL}/businessExpense`;
+export const GET_BUSINESSEXPENSE_BY_ID = `${API_URL}/businessExpense/id`;
+export const CREATE_BUSINESSEXPENSE_URL = `${API_URL}/businessExpense/create`;
+export const UPDATE_BUSINESSEXPENSE_URL = `${API_URL}/businessExpense/update`;
+export const DELETE_BUSINESSEXPENSE_URL = `${API_URL}/businessExpense/delete`;
 // CONSTANT_EXPORTS_AREA
 export const ACCESS_TOKEN = "x-auth-token";
 export const PROFILE = "e-book-profile";

@@ -44,6 +44,13 @@ const useFormItems = (editing) => {
             className: "col-span-6",
             placeholder: "e.g. 103",
         },
+        // {
+        //     label: "Balance",
+        //     name: "balance",
+        //     type: "number",
+        //     className: "col-span-6",
+        //     placeholder: "e.g. 103",
+        // },
         {
             label: "BioTime Id",
             name: "bioTimeId",
@@ -118,6 +125,34 @@ const useFormItems = (editing) => {
             optionFieldName: "gymName",
             optionValueName: "_id",
             className: "col-span-4",
+        },
+        {
+            label: "Gym",
+            name: "gym",
+            type: "dropdown",
+            getOptionsUrl: GET_ALL_GYM,
+            optionFieldName: "gymName",
+            optionValueName: "_id",
+            className: "col-span-4",
+        },
+        {
+            label: "Active",
+            name: "active",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "Banned",
+            name: "banned",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
+            label: "Balance",
+            name: "balance",
+            type: "number",
+            className: "col-span-6",
+            placeholder: "e.g. 103",
         },
     ];
 

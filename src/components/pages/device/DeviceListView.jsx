@@ -9,13 +9,19 @@ import { ADD_DEVICE_PATH, DEVICE_LIST_PATH } from "../../../routes/Slugs";
 import { useGetAllData } from "../../common/useGetAllData";
 import { GET_ALL_DEVICE_USERS } from "../../../helpers/Constant";
 import { Link, useParams } from "react-router-dom";
-import { ScrollConfig, useQuery } from "../../../helpers/Utils";
+import {
+    getAllQueryParams,
+    getLocalDate,
+    ScrollConfig,
+    useQuery,
+} from "../../../helpers/Utils";
+import DownloadExcel from "../../common/DownloadExcel";
 
 const DeviceListView = () => {
     const { gym } = useParams();
     // const { ip, port } = useQuery();
     const { dataList, loadingList, totalElements } = useGetAllData(
-        `${GET_ALL_DEVICE_USERS}/${gym}`
+        `${GET_ALL_DEVICE_USERS}/${gym}`,
     );
 
     const [data, setData] = useState([]);
@@ -32,22 +38,33 @@ const DeviceListView = () => {
                     (filterData.name
                         ? typeof e.Name === "string" &&
                           e.Name?.toUpperCase().includes(
-                              filterData.name.toUpperCase()
+                              filterData.name.toUpperCase(),
                           )
-                        : true)
-            )
+                        : true),
+            ),
         );
     };
 
+    const useUserExcelConfig = (users = []) => {
+        return users.map((user, index) => ({
+            "S/N": index + 1,
+            "User Id": user.PIN2 ?? "",
+            "Full Name": user.Name || "",
+            Card: user.Card || "",
+        }));
+    };
     const pageHeader = (
         <CustomPageHeader
             title="device list"
             extra={[
-                <Link key="add-device" to={ADD_DEVICE_PATH}>
-                    <Button key="add-button" type="primary">
-                        Add device
-                    </Button>
-                </Link>,
+                <DownloadExcel
+                    key="excel"
+                    localFile={data}
+                    isLocalFile={true}
+                    // searchparams={getAllQueryParams(query)}
+                    getConfig={useUserExcelConfig}
+                    fileName={`user-report-${getLocalDate(new Date(), "dd-mm-yy_h:mm_a")}`}
+                />,
             ]}
         />
     );

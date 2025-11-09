@@ -7,11 +7,11 @@ import AppRoutes from "../../routes/AppRoutes";
 import LoadingSuspense from "../common/LoadingSuspense";
 import { useCheckScreenType } from "../common/useCheckScreenType";
 import { useGetAllData } from "../common/useGetAllData";
-import ProfileDetails from "../pages/profile/ProfileDetails";
+import Dashboard from "../pages/dashboard/dashboard";
 
 const AsideLeft = lazy(() => import("./AsideLeft"));
 const Page404 = lazy(
-    () => import("../../components/pages/error_pages/Page404")
+    () => import("../../components/pages/error_pages/Page404"),
 );
 
 const { Sider, Content } = Layout;
@@ -43,7 +43,7 @@ const DefaultLayout = () => {
                 style={{
                     position: "fixed",
                     left: 0,
-                    zIndex: 10
+                    zIndex: 10,
                 }}
             >
                 <Suspense fallback={<LoadingSuspense height="100vh" />}>
@@ -55,7 +55,7 @@ const DefaultLayout = () => {
             </Sider>
             <Layout
                 style={{
-                    marginLeft: collapsed || screenType.isMobile ? 0 : 250
+                    marginLeft: collapsed || screenType.isMobile ? 0 : 250,
                 }}
             >
                 <Content
@@ -66,7 +66,7 @@ const DefaultLayout = () => {
                         filter:
                             !collapsed && screenType.isMobile
                                 ? "blur(5px)"
-                                : "blur(0px)"
+                                : "blur(0px)",
                     }}
                 >
                     <Suspense fallback={<LoadingSuspense />}>
@@ -82,7 +82,7 @@ const DefaultLayout = () => {
                                     />
                                 );
                             })}
-                            <Route path="/" element={<ProfileDetails />} />
+                            <Route path="/" element={<Dashboard />} />
                             <Route path="*" element={<Page404 />} />
                         </Routes>
                     </Suspense>

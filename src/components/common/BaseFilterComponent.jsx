@@ -14,6 +14,7 @@ const BaseFilterComponent = ({
     filterItems,
     hideUrl = false,
     size = 10,
+    extra,
     ...props
 }) => {
     const { isMobile } = useCheckScreenType();
@@ -49,7 +50,7 @@ const BaseFilterComponent = ({
                     page: 1,
                     size,
                     ..._data,
-                })
+                }),
             );
     };
 
@@ -83,16 +84,27 @@ const BaseFilterComponent = ({
                             />
                         ))}
                     </div>
-                    <div className="flex gap-2">
-                        <Button
-                            type="primary"
-                            onClick={() => searchAction(data)}
-                        >
-                            Search
-                        </Button>
-                        <Button danger onClick={resetSearch}>
-                            Reset
-                        </Button>
+                    <div className="flex justify-between">
+                        <div className="flex gap-2">
+                            <Button
+                                type="primary"
+                                onClick={() => searchAction(data)}
+                            >
+                                Search
+                            </Button>
+                            <Button danger onClick={resetSearch}>
+                                Reset
+                            </Button>
+                        </div>
+                        {extra
+                            ? extra((params) => {
+                                  const _data = { ...data, ...params };
+                                  setData(_data);
+
+                                  bindUrl(_data);
+                                  debounceAction(_data);
+                              })
+                            : null}
                     </div>
                 </Form>
             ),

@@ -49,10 +49,11 @@ const DownloadExcel = ({
                     setLoading,
                     params: { ...searchparams, page: 1, size: 100000 },
                 },
-                callback
+                callback,
             );
         } else {
-            const formattedData = getConfig(localFile);
+            console.log("localfile - > ", localFile);
+            const formattedData = getConfig ? getConfig(localFile) : localFile;
             exportToExcel(formattedData);
             setLoading(false);
         }

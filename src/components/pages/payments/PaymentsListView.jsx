@@ -12,10 +12,11 @@ import { Link } from "react-router-dom";
 import { getLocalDate, ScrollConfig, useQuery } from "../../../helpers/Utils";
 import DownloadExcel from "../../common/DownloadExcel";
 import { usePaymentConfig } from "./PaymentsHOC/excelConfig";
+import pDate from "./PaymentsHOC/fit-and-fitness-payment.json";
 
 const PaymentsListView = () => {
     const { dataList, loadingList, totalElements, getAllData } = useGetAllData(
-        `${GET_ALL_PAYMENTS}?canceled=false`
+        `${GET_ALL_PAYMENTS}?canceled=false`,
     );
 
     const columns = usePaymentsColumns({ callback: getAllData });
@@ -26,17 +27,31 @@ const PaymentsListView = () => {
             title="payments list"
             extra={[
                 query.get("gym") && (
+                    // <DownloadExcel
+                    //     key="excel"
+                    //     dataUrl={GET_ALL_PAYMENTS}
+                    //     searchparams={{
+                    //         gym: query.get("gym"),
+                    //         canceled: false,
+                    //     }}
+                    //     getConfig={usePaymentConfig}
+                    //     fileName={`Payment-report-${getLocalDate(new Date(), "dd-mm-yy")}`}
+                    // >
+                    //     Download
+                    // </DownloadExcel>
                     <DownloadExcel
                         key="excel"
-                        dataUrl={GET_ALL_PAYMENTS}
+                        // dataUrl={GET_ALL_PAYMENTS}
+                        isLocalFile={true}
+                        localFile={pDate}
                         searchparams={{
                             gym: query.get("gym"),
                             canceled: false,
                         }}
-                        getConfig={usePaymentConfig}
+                        // getConfig={usePaymentConfig}
                         fileName={`Payment-report-${getLocalDate(new Date(), "dd-mm-yy")}`}
                     >
-                        Download
+                        Download old
                     </DownloadExcel>
                 ),
             ]}

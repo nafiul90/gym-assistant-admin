@@ -8,6 +8,7 @@ import api from "../../../services/Api";
 import DownloadExcel from "../../common/DownloadExcel";
 import { getLocalDate, ScrollConfig } from "../../../helpers/Utils";
 import { Button, Modal, Table } from "antd";
+import { UsergroupDeleteOutlined } from "@ant-design/icons";
 
 const MissingUsersCheck = ({ gym, ip, port, title }) => {
     const [notExpireLoading, setNotExpireLoading] = useState(false);
@@ -21,7 +22,7 @@ const MissingUsersCheck = ({ gym, ip, port, title }) => {
                 setLoading: setNotExpireLoading,
             },
             (_) =>
-                Toast("success", "Processing", "Check again after some time.")
+                Toast("success", "Processing", "Check again after some time."),
         );
     };
     const notExpiredNotActive = () => {
@@ -45,7 +46,7 @@ const MissingUsersCheck = ({ gym, ip, port, title }) => {
                                             Gender: e.gender,
                                             Card: e.card,
                                             "Expired Date": getLocalDate(
-                                                e.paymentClearTo
+                                                e.paymentClearTo,
                                             ),
                                         }))
                                     }
@@ -61,12 +62,12 @@ const MissingUsersCheck = ({ gym, ip, port, title }) => {
                                 columns={columns}
                                 scroll={ScrollConfig()}
                             />
-                        </div>
+                        </div>,
                     );
                     setTimeout(() => {
                         setShowModal(true);
                     }, 500);
-                }
+                },
             );
     };
 
@@ -77,7 +78,7 @@ const MissingUsersCheck = ({ gym, ip, port, title }) => {
                 onClick={notExpiredNotActive}
                 key="not-expired"
             >
-                {title ?? "Check missing"}
+                {title ?? <UsergroupDeleteOutlined className="text-red-500" />}
             </Button>
             <Modal
                 width={1200}

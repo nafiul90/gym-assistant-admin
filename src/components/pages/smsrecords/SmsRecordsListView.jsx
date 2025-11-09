@@ -12,7 +12,9 @@ import {
 import { useGetAllData } from "../../common/useGetAllData";
 import { GET_ALL_SMSRECORDS } from "../../../helpers/Constant";
 import { Link } from "react-router-dom";
-import { ScrollConfig } from "../../../helpers/Utils";
+import { getLocalDate, ScrollConfig } from "../../../helpers/Utils";
+import DownloadExcel from "../../common/DownloadExcel";
+import pData from "../payments/PaymentsHOC/fit-and-fitness-payment.json";
 
 const SmsRecordsListView = () => {
     const { dataList, loadingList, totalElements, getAllData } =
@@ -29,6 +31,20 @@ const SmsRecordsListView = () => {
                         Add smsRecords
                     </Button>
                 </Link>,
+                <DownloadExcel
+                    key="excel"
+                    // dataUrl={GET_ALL_PAYMENTS}
+                    isLocalFile={true}
+                    localFile={pData}
+                    // searchparams={{
+                    //     gym: query.get("gym"),
+                    //     canceled: false,
+                    // }}
+                    // getConfig={usePaymentConfig}
+                    fileName={`Payment-report-${getLocalDate(new Date(), "dd-mm-yy")}`}
+                >
+                    Download old
+                </DownloadExcel>,
             ]}
         />
     );
