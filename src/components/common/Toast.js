@@ -9,6 +9,6 @@ export const Toast = (type, title, desc) => {
     notification[type]({
         message: title,
         description: data,
-        placement: "bottomRight"
+        placement: "bottomRight",
     });
 };

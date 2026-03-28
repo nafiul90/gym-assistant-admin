@@ -277,6 +277,13 @@ const useFormItems = (fileList) => {
             type: "switch",
         },
         {
+            label: "SMS Provider",
+            name: "smsProvider",
+            className: "col-span-6",
+            type: "dropdown",
+            options: ["Reve", "amsysbd"],
+        },
+        {
             label: "smsApiKey",
             name: "smsApiKey",
             className: "col-span-6",
@@ -328,11 +335,27 @@ const useFormItems = (fileList) => {
             type: "switch",
         },
         {
+            label: "Member Terms And Conditions",
+            name: "memberTermsAndConditions",
+            className: "col-span-6",
+            type: "switch",
+        },
+        {
             label: "Show history of",
             name: "showHistoryOf",
             className: "col-span-6",
             type: "dropdown",
             options: ["One Month", "One Day"],
+        },
+        {
+            label: "androidUrl",
+            name: "androidUrl",
+            className: "col-span-6",
+        },
+        {
+            label: "iosUrl",
+            name: "iosUrl",
+            className: "col-span-6",
         },
     ];
 

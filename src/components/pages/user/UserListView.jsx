@@ -2,6 +2,7 @@ import { Button, Modal } from "antd";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
+    DISABLE_ALL_BIOTIME_EXPIRED_USER,
     DISABLE_ALL_EXPIRED_USER,
     ENABLE_MISSING_USERS_API,
     EXTENDED_USER_API_URL,
@@ -107,17 +108,40 @@ const UserListView = () => {
 
     const expireMemberDetector = (callback) => {
         return query.get("gym") ? (
-            <Button
-                onClick={() =>
-                    callback({
-                        type: "MEMBER",
-                        activeEntry: true,
-                        paymentStatus: "Package expired",
-                    })
-                }
-            >
-                Expire & active
-            </Button>
+            <div className="flex gap-2">
+                <Button
+                    onClick={() =>
+                        callback({
+                            type: "MEMBER",
+                            activeEntry: true,
+                            paymentStatus: "Package expired",
+                        })
+                    }
+                >
+                    Expire & active
+                </Button>
+                <Button
+                    onClick={() => {
+                        const gym = query.get("gym");
+                        !expireLoading &&
+                            api.getSingleData(
+                                {
+                                    url: `${DISABLE_ALL_BIOTIME_EXPIRED_USER}?gym=${gym}`,
+                                    setLoading: setExpireLoading,
+                                },
+                                (res) => {
+                                    Toast(
+                                        "success",
+                                        "Completed",
+                                        res.data?.message,
+                                    );
+                                },
+                            );
+                    }}
+                >
+                    Biotime Invalid Members
+                </Button>
+            </div>
         ) : null;
     };
 

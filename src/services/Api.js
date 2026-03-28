@@ -31,7 +31,7 @@ const api = {
 const apiCall = async (
     { setLoading, url, body, params, method },
     next,
-    onError
+    onError,
 ) => {
     const getAuthHeader = () => {
         const accessToken = localStorage.getItem(ACCESS_TOKEN);
@@ -40,7 +40,7 @@ const apiCall = async (
 
     const axiosCall = () => {
         if (["post", "put"].includes(method)) {
-            return axios[method](url, body, {
+            return encryptedAxios[method](url, body, {
                 ...getAuthHeader(),
                 params,
             });

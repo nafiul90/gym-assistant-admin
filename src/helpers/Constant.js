@@ -84,6 +84,7 @@ export const UPDATE_GYMPAYMENT_URL = `${API_URL}/gymPayment/update`;
 export const DELETE_GYMPAYMENT_URL = `${API_URL}/gymPayment/delete`;
 
 export const DISABLE_ALL_EXPIRED_USER = `${API_URL}/users/disable-all-expired-users-fingerprint`;
+export const DISABLE_ALL_BIOTIME_EXPIRED_USER = `${API_URL}/users/check-invalid-biotime-users`;
 
 // device
 

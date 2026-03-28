@@ -75,19 +75,27 @@ const SidebarMenus = () => {
         },
         {
             key: "partner",
-            label: "partner",
+            label: "Partner",
             onClick: () => navigate(PATH.PARTNER_LIST_PATH),
             icon: <PieChartOutlined />,
             children: null,
             permissions: [Permission.ALL],
-        }, 
-    {
+        },
+        {
+            key: "config",
+            label: "Config",
+            onClick: () => navigate(PATH.SITE_CONFIG_LIST_PATH),
+            icon: <PieChartOutlined />,
+            children: null,
+            permissions: [Permission.ALL],
+        },
+        {
             key: "businessExpense",
             label: "businessExpense",
             onClick: () => navigate(PATH.BUSINESSEXPENSE_LIST_PATH),
             icon: <PieChartOutlined />,
             children: null,
-            permissions: [Permission.ALL]
+            permissions: [Permission.ALL],
         }, // NAVS_EXPORTS_AREA
         {
             key: "logout",
