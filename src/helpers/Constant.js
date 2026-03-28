@@ -2,8 +2,8 @@
 export const SITE_NAME = "GMS Admin";
 export const CURRENCY = "৳";
 // export const ROOT_URL = "http://localhost:8087";
-// export const ROOT_URL = "http://localhost:3051/api/v/1.0.0";
-export const ROOT_URL = "https://api.gymassistant.xyz/api/v/1.0.0";
+export const ROOT_URL = "http://localhost:3051/api/v/1.0.0";
+// export const ROOT_URL = "https://api.gymassistant.xyz/api/v/1.0.0";
 export const IMAGE_URL = `https://api.gymassistant.xyz`;
 export const FILE_URL = `https://api.gymassistant.xyz`;
 
@@ -145,4 +145,13 @@ export const COMPANY = {
     address: "Dhaka Division, Bangladesh",
 };
 export const BACK_BUTTON_COLOR = "#3390FF";
+
+// admin dashboard
+export const ADMIN_DASHBOARD_STATS = `${API_URL}/admin-dashboard/stats`;
+export const ADMIN_DASHBOARD_ACTIVE_USERS = `${API_URL}/admin-dashboard/active-users`;
+export const ADMIN_DASHBOARD_REGISTRATIONS = `${API_URL}/admin-dashboard/registrations`;
+export const ADMIN_DASHBOARD_APP_ACTIVITY = `${API_URL}/admin-dashboard/app-activity`;
+export const ADMIN_DASHBOARD_ATT_LOGS = `${API_URL}/admin-dashboard/att-logs`;
+export const ADMIN_DASHBOARD_GYMS = `${API_URL}/admin-dashboard/gyms`;
+export const SOCKET_ROOT_URL = `https://api.gymassistant.xyz`;
 // end
