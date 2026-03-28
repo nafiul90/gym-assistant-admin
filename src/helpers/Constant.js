@@ -153,5 +153,5 @@ export const ADMIN_DASHBOARD_REGISTRATIONS = `${API_URL}/admin-dashboard/registr
 export const ADMIN_DASHBOARD_APP_ACTIVITY = `${API_URL}/admin-dashboard/app-activity`;
 export const ADMIN_DASHBOARD_ATT_LOGS = `${API_URL}/admin-dashboard/att-logs`;
 export const ADMIN_DASHBOARD_GYMS = `${API_URL}/admin-dashboard/gyms`;
-export const SOCKET_ROOT_URL = `https://api.gymassistant.xyz`;
+export const SOCKET_ROOT_URL = ROOT_URL.replace(/\/api.*$/, "");
 // end
