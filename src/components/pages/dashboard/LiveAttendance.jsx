@@ -13,7 +13,6 @@ import {
 } from "../../../helpers/Constant";
 
 const { RangePicker } = DatePicker;
-const PAGE_SIZE = 20;
 
 const LiveAttendance = ({ onSocketStatus }) => {
     const [logs, setLogs] = useState([]);
@@ -27,9 +26,15 @@ const LiveAttendance = ({ onSocketStatus }) => {
     const [loadingMore, setLoadingMore] = useState(false);
     const [initialLoading, setInitialLoading] = useState(true);
 
-    const socketRef = useRef(null);
+    // Refs so socket handler always sees the latest filter values
     const mutedRef = useRef(false);
     mutedRef.current = muted;
+    const gymFilterRef = useRef(null);
+    gymFilterRef.current = gymFilter;
+    const dateRangeRef = useRef(null);
+    dateRangeRef.current = dateRange;
+    const gymsRef = useRef([]);
+    gymsRef.current = gyms;
 
     // Load gyms for filter dropdown
     useEffect(() => {
@@ -44,14 +49,16 @@ const LiveAttendance = ({ onSocketStatus }) => {
             if (replace) setInitialLoading(true);
             else setLoadingMore(true);
             try {
-                const params = { page: pageNum, limit: PAGE_SIZE };
+                const params = { page: pageNum };
                 if (gymFilter) params.gymId = gymFilter;
                 if (dateRange) {
+                    // Send YYYY-MM-DD; backend forces 00:00:00 / 23:59:59
                     params.from = dayjs(dateRange[0]).format("YYYY-MM-DD");
                     params.to = dayjs(dateRange[1]).format("YYYY-MM-DD");
                 }
                 const res = await apiFetch(ADMIN_DASHBOARD_ATT_LOGS, params);
-                const items = Array.isArray(res?.logs) ? res.logs : [];
+                // Backend returns { data, hasMore, page, total }
+                const items = Array.isArray(res?.data) ? res.data : [];
                 setHasMore(res?.hasMore ?? false);
                 if (replace) {
                     setLogs(items);
@@ -73,7 +80,7 @@ const LiveAttendance = ({ onSocketStatus }) => {
         fetchLogs(1, true);
     }, [fetchLogs]);
 
-    // Socket connection
+    // Socket — mount-only; uses refs to read current filter state
     useEffect(() => {
         const token = localStorage.getItem(ACCESS_TOKEN) || "";
         const socket = io(SOCKET_ROOT_URL, {
@@ -81,7 +88,6 @@ const LiveAttendance = ({ onSocketStatus }) => {
             reconnection: true,
             reconnectionDelay: 2000,
         });
-        socketRef.current = socket;
 
         socket.on("connect", () => {
             socket.emit("join_admin", { token });
@@ -93,11 +99,44 @@ const LiveAttendance = ({ onSocketStatus }) => {
 
         socket.on("new_att_log", (incoming) => {
             const items = Array.isArray(incoming) ? incoming : [incoming];
+
+            // Enrich plain-string gymId with the full gym object from our list
+            const enriched = items.map((log) => {
+                if (log.gymId && typeof log.gymId === "string") {
+                    const gymObj = gymsRef.current.find((g) => g._id === log.gymId);
+                    return gymObj ? { ...log, gymId: gymObj } : log;
+                }
+                return log;
+            });
+
+            const currentGymFilter = gymFilterRef.current;
+            const currentDateRange = dateRangeRef.current;
+            const todayStr = dayjs().format("YYYY-MM-DD");
+
+            const filtered = enriched.filter((log) => {
+                // Gym filter
+                const logGymId = log.gymId?._id || log.gymId;
+                if (currentGymFilter && logGymId !== currentGymFilter) return false;
+
+                // Date filter: selected range OR today-only (default)
+                const punchDay = dayjs(log.punchTime).format("YYYY-MM-DD");
+                if (currentDateRange) {
+                    const fromDay = dayjs(currentDateRange[0]).format("YYYY-MM-DD");
+                    const toDay = dayjs(currentDateRange[1]).format("YYYY-MM-DD");
+                    if (punchDay < fromDay || punchDay > toDay) return false;
+                } else {
+                    if (punchDay !== todayStr) return false;
+                }
+
+                return true;
+            });
+
+            if (filtered.length === 0) return;
+
             if (!mutedRef.current) playBeep();
 
             setLogs((prev) => {
-                const merged = [...items, ...prev];
-                // deduplicate by _id
+                const merged = [...filtered, ...prev];
                 const seen = new Set();
                 return merged.filter((l) => {
                     if (seen.has(l._id)) return false;
@@ -106,12 +145,8 @@ const LiveAttendance = ({ onSocketStatus }) => {
                 });
             });
 
-            const freshIds = new Set(items.map((l) => l._id));
-            setNewIds((prev) => {
-                const next = new Set([...prev, ...freshIds]);
-                return next;
-            });
-            // clear "new" highlight after 4s
+            const freshIds = new Set(filtered.map((l) => l._id));
+            setNewIds((prev) => new Set([...prev, ...freshIds]));
             setTimeout(() => {
                 setNewIds((prev) => {
                     const next = new Set(prev);
@@ -125,7 +160,7 @@ const LiveAttendance = ({ onSocketStatus }) => {
             socket.disconnect();
             onSocketStatus?.("disconnected");
         };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const loadMore = () => {
@@ -186,7 +221,7 @@ const LiveAttendance = ({ onSocketStatus }) => {
                     />
                     <RangePicker
                         size="small"
-                        onChange={(v) => setDateRange(v)}
+                        onChange={(v) => setDateRange(v || null)}
                         disabledDate={(d) => d && d > dayjs()}
                         style={{ width: 220 }}
                     />
