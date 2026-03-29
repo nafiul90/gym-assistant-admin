@@ -104,6 +104,14 @@ const SidebarMenus = () => {
             icon: <PieChartOutlined />,
             children: null,
             permissions: [Permission.ALL],
+        },
+        {
+            key: "database-backup",
+            label: "Database Backup",
+            onClick: () => navigate(PATH.DATABASE_BACKUP_PATH),
+            icon: <PieChartOutlined />,
+            children: null,
+            permissions: [Permission.ALL],
         }, // NAVS_EXPORTS_AREA
         {
             key: "logout",

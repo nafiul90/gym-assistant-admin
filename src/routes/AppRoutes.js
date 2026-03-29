@@ -111,6 +111,7 @@ const EditBusinessExpense = lazy(() =>
     import("../components/pages/businessexpense/EditBusinessExpense")
 );
 const CheckDevices = lazy(() => import("../components/pages/dashboard/CheckDevices"));
+const DatabaseBackup = lazy(() => import("../components/pages/dashboard/DatabaseBackup"));
 // ROUTE_IMPORTS_AREA
 
 const AppRoutes = [
@@ -422,7 +423,13 @@ const AppRoutes = [
         component: CheckDevices,
         permissions: [Permission.ALL],
     },
-
+    {
+        path: PATH.DATABASE_BACKUP_PATH,
+        exact: true,
+        isPrivate: false,
+        component: DatabaseBackup,
+        permissions: [Permission.ALL],
+    },
 
     // ROUTE_DECLARATION_AREA
 ];

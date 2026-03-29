@@ -80,4 +80,5 @@ export const BUSINESSEXPENSE_LIST_PATH = `${ROOT_PATH}businessExpense-list`;
 export const ADD_BUSINESSEXPENSE_PATH = `${ROOT_PATH}add-businessExpense`;
 export const EDIT_BUSINESSEXPENSE_PATH = `${ROOT_PATH}edit-businessExpense`;
 export const CHECK_DEVICES_PATH = `${ROOT_PATH}check-devices`;
+export const DATABASE_BACKUP_PATH = `${ROOT_PATH}database-backup`;
 // SLUGS_EXPORTS_AREA

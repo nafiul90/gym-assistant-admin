@@ -126,6 +126,7 @@ export const CREATE_BUSINESSEXPENSE_URL = `${API_URL}/businessExpense/create`;
 export const UPDATE_BUSINESSEXPENSE_URL = `${API_URL}/businessExpense/update`;
 export const DELETE_BUSINESSEXPENSE_URL = `${API_URL}/businessExpense/delete`;
 export const ADMIN_DASHBOARD_CHECK_DEVICES = `${API_URL}/admin-dashboard/check-devices`;
+export const ADMIN_DASHBOARD_BACKUP = `${API_URL}/admin-dashboard/backup`;
 // CONSTANT_EXPORTS_AREA
 export const ACCESS_TOKEN = "x-auth-token";
 export const PROFILE = "e-book-profile";
