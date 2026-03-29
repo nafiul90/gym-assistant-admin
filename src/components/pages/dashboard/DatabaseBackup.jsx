@@ -8,9 +8,9 @@ import {
     Typography,
 } from "antd";
 import {
-    CloudUploadOutlined,
     DatabaseOutlined,
     DownloadOutlined,
+    UploadOutlined,
 } from "@ant-design/icons";
 import { ACCESS_TOKEN, ADMIN_DASHBOARD_BACKUP } from "../../../helpers/Constant";
 
@@ -98,7 +98,7 @@ const DownloadSection = () => {
 
 // ── Upload to Drive section ───────────────────────────────────────────────────
 
-const UploadDriveSection = () => {
+const UploadDropboxSection = () => {
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState(null);
     const [error, setError] = useState(null);
@@ -108,7 +108,7 @@ const UploadDriveSection = () => {
         setResult(null);
         setError(null);
         try {
-            const res = await fetch(`${ADMIN_DASHBOARD_BACKUP}/upload-drive`, {
+            const res = await fetch(`${ADMIN_DASHBOARD_BACKUP}/upload-dropbox`, {
                 method: "POST",
                 headers: authHeaders(),
             });
@@ -127,16 +127,16 @@ const UploadDriveSection = () => {
         <Card
             title={
                 <Space>
-                    <CloudUploadOutlined />
-                    <span>Upload to Google Drive</span>
+                    <UploadOutlined />
+                    <span>Upload to Dropbox</span>
                 </Space>
             }
             style={{ marginBottom: 24 }}
         >
             <Paragraph type="secondary">
-                Creates a backup zip and uploads it directly to Google Drive using the
-                service account. The cron job also runs this automatically at{" "}
-                <strong>2:00 PM</strong> and <strong>11:30 PM</strong> Dhaka time every day.
+                Creates a backup zip and uploads it directly to Dropbox
+                under <code>/gym-assistant-backups/</code>. The cron job also runs this
+                automatically at <strong>2:00 PM</strong> and <strong>11:30 PM</strong> Dhaka time every day.
             </Paragraph>
 
             {error && (
@@ -148,24 +148,16 @@ const UploadDriveSection = () => {
                     type="success"
                     showIcon
                     style={{ marginBottom: 12 }}
-                    message="Uploaded successfully"
+                    message="Uploaded to Dropbox successfully"
                     description={
                         <div>
-                            <Text>File: <strong>{result.driveFile?.name}</strong></Text>
+                            <Text>File: <strong>{result.dropboxFile?.name}</strong></Text>
                             <br />
-                            <Text type="secondary">Drive ID: {result.driveFile?.id}</Text>
-                            {result.driveFile?.webViewLink && (
-                                <>
-                                    <br />
-                                    <a
-                                        href={result.driveFile.webViewLink}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                    >
-                                        Open in Google Drive
-                                    </a>
-                                </>
-                            )}
+                            <Text type="secondary">Path: {result.dropboxFile?.path_display}</Text>
+                            <br />
+                            <Text type="secondary">
+                                Size: {result.dropboxFile?.size ? `${(result.dropboxFile.size / 1024 / 1024).toFixed(2)} MB` : "—"}
+                            </Text>
                         </div>
                     }
                 />
@@ -173,12 +165,12 @@ const UploadDriveSection = () => {
 
             <Button
                 type="primary"
-                icon={<CloudUploadOutlined />}
+                icon={<UploadOutlined />}
                 loading={loading}
                 onClick={upload}
                 size="large"
             >
-                {loading ? "Uploading to Drive…" : "Upload Backup to Google Drive"}
+                {loading ? "Uploading to Dropbox…" : "Upload Backup to Dropbox"}
             </Button>
         </Card>
     );
@@ -195,11 +187,11 @@ const DatabaseBackup = () => {
             </Space>
             <Text type="secondary" style={{ display: "block", marginBottom: 24 }}>
                 Manage MongoDB backups. Download a zip to your machine or push it directly
-                to Google Drive. Automatic Drive uploads run at 2:00 PM and 11:30 PM (Dhaka time).
+                to Dropbox. Automatic Dropbox uploads run at 2:00 PM and 11:30 PM (Dhaka time).
             </Text>
             <Divider />
             <DownloadSection />
-            <UploadDriveSection />
+            <UploadDropboxSection />
         </div>
     );
 };
