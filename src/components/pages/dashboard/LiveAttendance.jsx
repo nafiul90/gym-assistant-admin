@@ -71,7 +71,7 @@ const LiveAttendance = ({ onSocketStatus }) => {
                 setLoadingMore(false);
             }
         },
-        [gymFilter, dateRange]
+        [gymFilter, dateRange],
     );
 
     // Re-fetch when filters change
@@ -103,7 +103,9 @@ const LiveAttendance = ({ onSocketStatus }) => {
             // Enrich plain-string gymId with the full gym object from our list
             const enriched = items.map((log) => {
                 if (log.gymId && typeof log.gymId === "string") {
-                    const gymObj = gymsRef.current.find((g) => g._id === log.gymId);
+                    const gymObj = gymsRef.current.find(
+                        (g) => g._id === log.gymId,
+                    );
                     return gymObj ? { ...log, gymId: gymObj } : log;
                 }
                 return log;
@@ -116,13 +118,18 @@ const LiveAttendance = ({ onSocketStatus }) => {
             const filtered = enriched.filter((log) => {
                 // Gym filter
                 const logGymId = log.gymId?._id || log.gymId;
-                if (currentGymFilter && logGymId !== currentGymFilter) return false;
+                if (currentGymFilter && logGymId !== currentGymFilter)
+                    return false;
 
                 // Date filter: selected range OR today-only (default)
                 const punchDay = dayjs(log.punchTime).format("YYYY-MM-DD");
                 if (currentDateRange) {
-                    const fromDay = dayjs(currentDateRange[0]).format("YYYY-MM-DD");
-                    const toDay = dayjs(currentDateRange[1]).format("YYYY-MM-DD");
+                    const fromDay = dayjs(currentDateRange[0]).format(
+                        "YYYY-MM-DD",
+                    );
+                    const toDay = dayjs(currentDateRange[1]).format(
+                        "YYYY-MM-DD",
+                    );
                     if (punchDay < fromDay || punchDay > toDay) return false;
                 } else {
                     if (punchDay !== todayStr) return false;
@@ -191,7 +198,13 @@ const LiveAttendance = ({ onSocketStatus }) => {
                 }}
             >
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                    <span style={{ fontWeight: 700, fontSize: 16, color: "#1a1a2e" }}>
+                    <span
+                        style={{
+                            fontWeight: 700,
+                            fontSize: 16,
+                            color: "#1a1a2e",
+                        }}
+                    >
                         Live Attendance
                     </span>
                     {logs.length > 0 && (
@@ -209,7 +222,14 @@ const LiveAttendance = ({ onSocketStatus }) => {
                         </span>
                     )}
                 </div>
-                <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+                <div
+                    style={{
+                        display: "flex",
+                        gap: 8,
+                        alignItems: "center",
+                        flexWrap: "wrap",
+                    }}
+                >
                     <Select
                         placeholder="All Gyms"
                         allowClear
@@ -217,7 +237,10 @@ const LiveAttendance = ({ onSocketStatus }) => {
                         size="small"
                         value={gymFilter}
                         onChange={(v) => setGymFilter(v || null)}
-                        options={gyms.map((g) => ({ label: g.gymName, value: g._id }))}
+                        options={gyms.map((g) => ({
+                            label: g.gymName,
+                            value: g._id,
+                        }))}
                     />
                     <RangePicker
                         size="small"
@@ -263,9 +286,15 @@ const LiveAttendance = ({ onSocketStatus }) => {
                     No attendance records yet
                 </div>
             ) : (
-                <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <div
+                    style={{ display: "flex", flexDirection: "column", gap: 8 }}
+                >
                     {logs.map((log) => (
-                        <AttCard key={log._id} log={log} isNew={newIds.has(log._id)} />
+                        <AttCard
+                            key={log._id}
+                            log={log}
+                            isNew={newIds.has(log._id)}
+                        />
                     ))}
                     {hasMore && (
                         <div style={{ textAlign: "center", paddingTop: 8 }}>
