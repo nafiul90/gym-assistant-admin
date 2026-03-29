@@ -463,6 +463,181 @@ const PyzkSection = () => {
     );
 };
 
+// ── Deactivate All section ────────────────────────────────────────────────────
+
+const LOG_TYPE_COLOR = {
+    info: "#1677ff",
+    ok: "#52c41a",
+    found: "#faad14",
+    done: "#52c41a",
+    warn: "#faad14",
+    error: "#ff4d4f",
+    summary: "#1677ff",
+    complete: "#722ed1",
+};
+
+const LOG_TYPE_LABEL = {
+    info: "INFO",
+    ok: "OK",
+    found: "FOUND",
+    done: "DONE",
+    warn: "WARN",
+    error: "ERROR",
+    summary: "SUMMARY",
+    complete: "COMPLETE",
+};
+
+const DeactivateAllSection = () => {
+    const [running, setRunning] = useState(false);
+    const [logs, setLogs] = useState([]);
+    const [done, setDone] = useState(false);
+    const logEndRef = useRef(null);
+    const readerRef = useRef(null);
+
+    const scrollToBottom = useCallback(() => {
+        logEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, []);
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [logs, scrollToBottom]);
+
+    const run = async () => {
+        setLogs([]);
+        setDone(false);
+        setRunning(true);
+
+        try {
+            const res = await fetch(
+                `${ADMIN_DASHBOARD_CHECK_DEVICES}/deactivate-all`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "x-auth-token": localStorage.getItem(ACCESS_TOKEN) || "",
+                    },
+                }
+            );
+
+            const reader = res.body.getReader();
+            readerRef.current = reader;
+            const decoder = new TextDecoder();
+            let buffer = "";
+
+            while (true) {
+                const { done: streamDone, value } = await reader.read();
+                if (streamDone) break;
+                buffer += decoder.decode(value, { stream: true });
+                const lines = buffer.split("\n");
+                buffer = lines.pop(); // keep incomplete last line
+                for (const line of lines) {
+                    const trimmed = line.trim();
+                    if (!trimmed) continue;
+                    try {
+                        const entry = JSON.parse(trimmed);
+                        setLogs((prev) => [...prev, entry]);
+                    } catch {
+                        // non-JSON line — ignore
+                    }
+                }
+            }
+        } catch (err) {
+            setLogs((prev) => [
+                ...prev,
+                { type: "error", source: "all", message: "Request failed: " + err.message },
+            ]);
+        } finally {
+            readerRef.current = null;
+            setRunning(false);
+            setDone(true);
+        }
+    };
+
+    const completeEntry = logs.find((l) => l.type === "complete");
+
+    return (
+        <Card
+            title={
+                <Space>
+                    <span>Deactivate All Invalid Users</span>
+                    {running && <SyncOutlined spin style={{ color: "#722ed1" }} />}
+                </Space>
+            }
+            extra={
+                <Button
+                    type="primary"
+                    danger
+                    onClick={run}
+                    loading={running}
+                    icon={<StopOutlined />}
+                    disabled={running}
+                >
+                    {done ? "Run Again" : "Deactivate All (BioTime + PyZK)"}
+                </Button>
+            }
+            style={{ marginBottom: 24 }}
+        >
+            {logs.length === 0 && !running && (
+                <Text type="secondary">
+                    Scans ALL active BioTime and PyZK gyms in one go, finds users who are
+                    deactivated in the system but still have device access, and removes them.
+                    Use this for a full sweep instead of checking gym by gym above.
+                </Text>
+            )}
+
+            {completeEntry && (
+                <Alert
+                    type="success"
+                    showIcon
+                    message={completeEntry.message}
+                    style={{ marginBottom: 12 }}
+                />
+            )}
+
+            {logs.length > 0 && (
+                <div
+                    style={{
+                        maxHeight: 360,
+                        overflowY: "auto",
+                        background: "#0d0d0d",
+                        borderRadius: 6,
+                        padding: "10px 14px",
+                        fontFamily: "monospace",
+                        fontSize: 12,
+                        lineHeight: "1.8",
+                    }}
+                >
+                    {logs.map((entry, i) => (
+                        <div key={i} style={{ display: "flex", gap: 8 }}>
+                            <span
+                                style={{
+                                    color: LOG_TYPE_COLOR[entry.type] || "#aaa",
+                                    minWidth: 70,
+                                    fontWeight: 600,
+                                }}
+                            >
+                                [{LOG_TYPE_LABEL[entry.type] || entry.type.toUpperCase()}]
+                            </span>
+                            <span style={{ color: "#d9d9d9" }}>
+                                {entry.source && entry.source !== "all" && (
+                                    <span style={{ color: "#888", marginRight: 6 }}>
+                                        [{entry.source.toUpperCase()}]
+                                    </span>
+                                )}
+                                {entry.gymName && (
+                                    <span style={{ color: "#aaa", marginRight: 6 }}>{entry.gymName}{entry.ip ? ` (${entry.ip})` : ""} —</span>
+                                )}
+                                {entry.message}
+                            </span>
+                        </div>
+                    ))}
+                    <div ref={logEndRef} />
+                </div>
+            )}
+        </Card>
+    );
+};
+
 // ── Main page ─────────────────────────────────────────────────────────────────
 
 const CheckDevices = () => {
@@ -473,6 +648,7 @@ const CheckDevices = () => {
                 Scan BioTime and PyZK devices for users who are deactivated in the system but
                 still retain physical device access. Deactivate them in one click.
             </Text>
+            <DeactivateAllSection />
             <BiotimeSection />
             <PyzkSection />
         </div>
