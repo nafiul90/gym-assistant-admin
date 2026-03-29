@@ -79,4 +79,5 @@ export const EDIT_PARTNER_PATH = `${ROOT_PATH}edit-partner`;
 export const BUSINESSEXPENSE_LIST_PATH = `${ROOT_PATH}businessExpense-list`;
 export const ADD_BUSINESSEXPENSE_PATH = `${ROOT_PATH}add-businessExpense`;
 export const EDIT_BUSINESSEXPENSE_PATH = `${ROOT_PATH}edit-businessExpense`;
+export const CHECK_DEVICES_PATH = `${ROOT_PATH}check-devices`;
 // SLUGS_EXPORTS_AREA

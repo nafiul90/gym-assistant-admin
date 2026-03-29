@@ -110,6 +110,7 @@ const AddBusinessExpense = lazy(() =>
 const EditBusinessExpense = lazy(() =>
     import("../components/pages/businessexpense/EditBusinessExpense")
 );
+const CheckDevices = lazy(() => import("../components/pages/dashboard/CheckDevices"));
 // ROUTE_IMPORTS_AREA
 
 const AppRoutes = [
@@ -413,6 +414,15 @@ const AppRoutes = [
         permissions: [Permission.ALL],
     },
     
+
+    {
+        path: PATH.CHECK_DEVICES_PATH,
+        exact: true,
+        isPrivate: false,
+        component: CheckDevices,
+        permissions: [Permission.ALL],
+    },
+
 
     // ROUTE_DECLARATION_AREA
 ];

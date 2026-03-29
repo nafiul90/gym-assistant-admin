@@ -96,6 +96,14 @@ const SidebarMenus = () => {
             icon: <PieChartOutlined />,
             children: null,
             permissions: [Permission.ALL],
+        },
+        {
+            key: "check-devices",
+            label: "Check Devices",
+            onClick: () => navigate(PATH.CHECK_DEVICES_PATH),
+            icon: <PieChartOutlined />,
+            children: null,
+            permissions: [Permission.ALL],
         }, // NAVS_EXPORTS_AREA
         {
             key: "logout",
