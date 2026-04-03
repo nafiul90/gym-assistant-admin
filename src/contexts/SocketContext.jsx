@@ -1,9 +1,9 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-import { ROOT_URL } from "../helpers/Constant";
+import { SOCKET_ROOT_URL } from "../helpers/Constant";
 const SOCKET_CONTEXT = createContext(null);
-const url = `${ROOT_URL}`;
+const url = SOCKET_ROOT_URL;
 
 const connectToSocket = (userId, companyId) => {
     const socket = io(url, {

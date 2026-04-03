@@ -21,6 +21,7 @@ import {
 } from "@ant-design/icons";
 import encryptedAxios from "../../../services/encryptedAxios";
 import { ACCESS_TOKEN, ADMIN_DASHBOARD_CHECK_DEVICES } from "../../../helpers/Constant";
+import axios from "axios";
 
 const { Text, Title } = Typography;
 const { Panel } = Collapse;
@@ -32,12 +33,12 @@ const authHeader = () => ({
 });
 
 const apiGet = async (url) => {
-    const res = await encryptedAxios.get(url, { headers: authHeader() });
+    const res = await axios.get(url, { headers: authHeader() });
     return res.data;
 };
 
 const apiPost = async (url, body) => {
-    const res = await encryptedAxios.post(url, body, { headers: authHeader() });
+    const res = await axios.post(url, body, { headers: authHeader() });
     return res.data;
 };
 

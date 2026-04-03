@@ -1,11 +1,15 @@
-// const API_VERSION = "1.0.0";
 export const SITE_NAME = "GMS Admin";
 export const CURRENCY = "৳";
-// export const ROOT_URL = "http://localhost:8087";
-export const ROOT_URL = "http://localhost:3051/api/v/1.0.0";
-// export const ROOT_URL = "https://api.gymassistant.xyz/api/v/1.0.0";
-export const IMAGE_URL = `https://api.gymassistant.xyz`;
-export const FILE_URL = `https://api.gymassistant.xyz`;
+
+// Automatically uses .env.development locally and .env.production on build.
+// Never edit this line — edit the .env.* files instead.
+// export const ROOT_URL = "http://localhost:3051/api/v/1.0.0";
+export const ROOT_URL = process.env.REACT_APP_API_URL;
+
+// Derived: strip /api/v/x.x.x to get the bare origin for Socket.IO and image URLs.
+const _ORIGIN = ROOT_URL.replace(/\/api.*$/, "");
+export const IMAGE_URL = _ORIGIN;
+export const FILE_URL = _ORIGIN;
 
 const API_URL = `${ROOT_URL}`;
 
@@ -155,5 +159,5 @@ export const ADMIN_DASHBOARD_REGISTRATIONS = `${API_URL}/admin-dashboard/registr
 export const ADMIN_DASHBOARD_APP_ACTIVITY = `${API_URL}/admin-dashboard/app-activity`;
 export const ADMIN_DASHBOARD_ATT_LOGS = `${API_URL}/admin-dashboard/att-logs`;
 export const ADMIN_DASHBOARD_GYMS = `${API_URL}/admin-dashboard/gyms`;
-export const SOCKET_ROOT_URL = ROOT_URL.replace(/\/api.*$/, "");
+export const SOCKET_ROOT_URL = "wss://api.gymassistant.xyz";
 // end
