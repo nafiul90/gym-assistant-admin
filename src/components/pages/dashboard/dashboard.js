@@ -7,6 +7,7 @@ import RegistrationChart from "./RegistrationChart";
 import ActiveUsersSection from "./ActiveUsersSection";
 import LiveAttendance from "./LiveAttendance";
 import GymGrid from "./GymGrid";
+import InvoiceReport from "./InvoiceReport";
 
 const Dashboard = () => {
     const [socketStatus, setSocketStatus] = useState("connecting");
@@ -53,6 +54,9 @@ const Dashboard = () => {
 
                 {/* Gym grid (unpaid / paid) */}
                 <GymGrid />
+
+                {/* Income & Expense report */}
+                <InvoiceReport />
             </div>
         </PageWrapper>
     );

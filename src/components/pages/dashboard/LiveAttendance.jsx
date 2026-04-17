@@ -184,6 +184,8 @@ const LiveAttendance = ({ onSocketStatus }) => {
                 padding: "20px 22px",
                 boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
                 border: "1px solid #f0f4ff",
+                height: "500px",
+                overflowY: "auto",
             }}
         >
             {/* Header */}

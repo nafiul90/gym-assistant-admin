@@ -34,6 +34,8 @@ const ActiveUsersSection = () => {
                 padding: "20px 22px",
                 boxShadow: "0 2px 16px rgba(0,0,0,0.06)",
                 border: "1px solid #f0f4ff",
+                height: "300px",
+                overflowY: "auto",
             }}
         >
             <div
@@ -45,7 +47,9 @@ const ActiveUsersSection = () => {
                 }}
             >
                 <TeamOutlined style={{ fontSize: 18, color: "#2758d1" }} />
-                <span style={{ fontWeight: 700, fontSize: 16, color: "#1a1a2e" }}>
+                <span
+                    style={{ fontWeight: 700, fontSize: 16, color: "#1a1a2e" }}
+                >
                     Active Users
                 </span>
                 {users.length > 0 && (
@@ -62,7 +66,13 @@ const ActiveUsersSection = () => {
                         {users.length} online now
                     </span>
                 )}
-                <span style={{ fontSize: 11, color: "#d1d5db", marginLeft: "auto" }}>
+                <span
+                    style={{
+                        fontSize: 11,
+                        color: "#d1d5db",
+                        marginLeft: "auto",
+                    }}
+                >
                     active in last 2 min · refreshes 15s
                 </span>
             </div>
@@ -95,7 +105,8 @@ const ActiveUsersSection = () => {
                 <div
                     style={{
                         display: "grid",
-                        gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
+                        gridTemplateColumns:
+                            "repeat(auto-fill, minmax(240px, 1fr))",
                         gap: 10,
                     }}
                 >
