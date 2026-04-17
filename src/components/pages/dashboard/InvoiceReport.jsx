@@ -295,9 +295,9 @@ const buildPdf = ({
   .sub-section{margin-bottom:18px}
   .sub-heading{font-size:12px;font-weight:700;padding:6px 12px;border-radius:6px;
     margin-bottom:8px;display:inline-block}
-  .type-block{margin-bottom:16px;page-break-inside:avoid}
+  .type-block{margin-bottom:16px}
   .type-title{font-size:11px;font-weight:700;padding:5px 9px;background:#f9fafb;
-    color:#374151;border-bottom:1px solid #e5e7eb}
+    color:#374151;border-bottom:1px solid #e5e7eb;page-break-after:avoid}
   .badge{margin-left:8px;font-size:9px;font-weight:500;color:#6b7280;
     background:#f3f4f6;padding:1px 7px;border-radius:8px}
   table{width:100%;border-collapse:collapse;font-size:10px}
@@ -324,7 +324,13 @@ const buildPdf = ({
   .g-label{font-size:13px;font-weight:700}
   .g-sub{font-size:9px;color:#6b7280;margin-top:3px}
   .g-val{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums}
-  @media print{body{padding:10px 14px}.type-block{page-break-inside:avoid}}
+  @media print{
+    body{padding:10px 14px}
+    .type-block{page-break-inside:auto}
+    .type-title{page-break-after:avoid;break-after:avoid}
+    tr{page-break-inside:avoid;break-inside:avoid}
+    thead{display:table-header-group}
+  }
 </style></head><body>
 
 <h1>Invoice Report</h1>
