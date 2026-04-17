@@ -74,6 +74,7 @@ export const ENABLE_MISSING_USERS_API = `${API_URL}/users/enable-missing-users`;
 // invoice
 
 export const GET_ALL_INVOICE = `${API_URL}/invoice`;
+export const GET_INVOICE_INCOME_REPORT = `${API_URL}/invoice/income-report`;
 export const GET_INVOICE_BY_ID = `${API_URL}/invoice/id`;
 export const CREATE_INVOICE_URL = `${API_URL}/invoice/create`;
 export const UPDATE_INVOICE_URL = `${API_URL}/invoice/update`;
