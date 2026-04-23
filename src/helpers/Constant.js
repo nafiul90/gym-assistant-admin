@@ -8,8 +8,8 @@ export const ROOT_URL = process.env.REACT_APP_API_URL;
 
 // Derived: strip /api/v/x.x.x to get the bare origin for Socket.IO and image URLs.
 const _ORIGIN = ROOT_URL.replace(/\/api.*$/, "");
-export const IMAGE_URL = _ORIGIN;
-export const FILE_URL = _ORIGIN;
+export const IMAGE_URL = process.env.REACT_APP_IMAGE_URL;
+export const FILE_URL = process.env.REACT_APP_FILE_URL;
 
 const API_URL = `${ROOT_URL}`;
 

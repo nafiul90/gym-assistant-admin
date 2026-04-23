@@ -428,6 +428,10 @@ const buildPdf = ({
   </div>
 </div>
 
+${(() => {
+    const grossRevenue   = grossPaid - expenseTotals.due;
+    const isRevPos       = grossRevenue >= 0;
+    return `
 <div class="gross-box ${isPos ? "gp" : "gn"}">
   <div>
     <div class="g-label" style="color:${isPos ? "#166534" : "#991b1b"}">Gross Income (Cash Collected)</div>
@@ -442,6 +446,21 @@ const buildPdf = ({
     ${isPos ? "+" : ""}${CURRENCY}${cur(grossPaid)}
   </div>
 </div>
+
+<div class="gross-box ${isRevPos ? "gp" : "gn"}" style="margin-top:10px">
+  <div>
+    <div class="g-label" style="color:${isRevPos ? "#166534" : "#991b1b"}">Gross Revenue</div>
+    <div class="g-sub">
+      Total Income Collected &minus; Total Expense Due &nbsp;=&nbsp;
+      <strong>${CURRENCY}${cur(grossPaid)}</strong>
+      &minus; <strong>${CURRENCY}${cur(expenseTotals.due)}</strong>
+    </div>
+  </div>
+  <div class="g-val" style="color:${isRevPos ? "#16a34a" : "#dc2626"}">
+    ${isRevPos ? "+" : ""}${CURRENCY}${cur(grossRevenue)}
+  </div>
+</div>`;
+})()}
 
 <script>window.onload=()=>window.print();</script>
 </body></html>`;
@@ -679,6 +698,34 @@ const InvoiceReport = () => {
                             {CURRENCY}{cur(grossPaid)}
                         </div>
                     </div>
+
+                    {/* ══ Gross revenue banner ══ */}
+                    {(() => {
+                        const grossRevenue = grossPaid - expenseTotals.due;
+                        const isRevPos     = grossRevenue >= 0;
+                        return (
+                            <div style={{ ...S.grossBanner(isRevPos), marginTop: 10 }}>
+                                <div>
+                                    <div style={{ fontSize: 15, fontWeight: 700,
+                                                  color: isRevPos ? "#166534" : "#991b1b" }}>
+                                        Gross Revenue
+                                    </div>
+                                    <div style={{ fontSize: 12, color: "#6b7280", marginTop: 4 }}>
+                                        Total Income Collected &nbsp;−&nbsp; Total Expense Due
+                                        &nbsp;=&nbsp;
+                                        <strong>{CURRENCY}{cur(grossPaid)}</strong>
+                                        &nbsp;−&nbsp;
+                                        <strong>{CURRENCY}{cur(expenseTotals.due)}</strong>
+                                    </div>
+                                </div>
+                                <div style={{ fontSize: 32, fontWeight: 800, fontVariantNumeric: "tabular-nums",
+                                              color: isRevPos ? "#16a34a" : "#dc2626" }}>
+                                    {isRevPos ? "+" : ""}
+                                    {CURRENCY}{cur(grossRevenue)}
+                                </div>
+                            </div>
+                        );
+                    })()}
                 </>
             )}
         </div>

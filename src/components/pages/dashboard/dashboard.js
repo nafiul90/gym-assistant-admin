@@ -26,7 +26,6 @@ const Dashboard = () => {
             `}</style>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-
                 {/* Financial overview */}
                 <FinancialSummary />
 
@@ -40,23 +39,28 @@ const Dashboard = () => {
                     }}
                 >
                     <LiveUsersCard socketStatus={socketStatus} />
-                    <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: 20,
+                        }}
+                    >
                         <RegistrationChart />
                         <ActivityChart />
                     </div>
                 </div>
 
-                {/* Active users */}
-                <ActiveUsersSection />
-
-                {/* Live attendance feed */}
-                <LiveAttendance onSocketStatus={setSocketStatus} />
-
-                {/* Gym grid (unpaid / paid) */}
-                <GymGrid />
+                
 
                 {/* Income & Expense report */}
                 <InvoiceReport />
+                {/* Gym grid (unpaid / paid) */}
+                <GymGrid />
+                {/* Live attendance feed */}
+                <LiveAttendance onSocketStatus={setSocketStatus} />
+                {/* Active users */}
+                <ActiveUsersSection />
             </div>
         </PageWrapper>
     );
