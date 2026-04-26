@@ -1,6 +1,7 @@
 // src/network/encryptedAxios.js
 import axios from "axios";
 import CryptoJS from "crypto-js";
+import { ACCESS_TOKEN, REFRESH_TOKEN, REFRESH_TOKEN_KEY } from "../helpers/Constant";
 
 // Must be 32 characters (256 bits) key
 const ENCRYPTION_KEY = "urelaa-gym-2025-13579@#-urelaa-g"; // MUST match backend & Flutter
@@ -35,6 +36,17 @@ function decryptResponse(responseData) {
     return JSON.parse(decryptedText);
 }
 
+// Refresh token state — prevents concurrent refresh races
+let isRefreshing = false;
+let failedQueue = [];
+
+const processQueue = (error, token = null) => {
+    failedQueue.forEach(({ resolve, reject }) => {
+        error ? reject(error) : resolve(token);
+    });
+    failedQueue = [];
+};
+
 // Create axios instance
 const encryptedAxios = axios.create({
     baseURL: "", // Change this
@@ -51,7 +63,7 @@ encryptedAxios.interceptors.request.use((config) => {
     return config;
 });
 
-// Response interceptor: Decrypt response
+// Response interceptor: Decrypt response + handle 401 with token refresh
 encryptedAxios.interceptors.response.use(
     (response) => {
         if (response?.data?.data && response?.data?.iv) {
@@ -59,7 +71,52 @@ encryptedAxios.interceptors.response.use(
         }
         return response;
     },
-    (error) => {
+    async (error) => {
+        const originalRequest = error.config;
+
+        if (error.response?.status === 401 && !originalRequest._retry) {
+            if (isRefreshing) {
+                // Queue this request until refresh completes
+                return new Promise((resolve, reject) => {
+                    failedQueue.push({ resolve, reject });
+                }).then((token) => {
+                    originalRequest.headers["x-auth-token"] = token;
+                    return encryptedAxios(originalRequest);
+                }).catch((err) => Promise.reject(err));
+            }
+
+            originalRequest._retry = true;
+            isRefreshing = true;
+
+            try {
+                const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY);
+                if (!refreshToken) throw new Error("No refresh token");
+
+                // Use raw axios to avoid triggering this interceptor again
+                const encryptedBody = encryptRequest({ refreshToken });
+                const res = await axios.post(REFRESH_TOKEN, encryptedBody, {
+                    headers: { "Content-Type": "application/json" },
+                });
+
+                const data = decryptResponse(res.data);
+                localStorage.setItem(ACCESS_TOKEN, data.token);
+                localStorage.setItem(REFRESH_TOKEN_KEY, data.refreshToken);
+
+                processQueue(null, data.token);
+                originalRequest.headers["x-auth-token"] = data.token;
+                return encryptedAxios(originalRequest);
+            } catch (refreshError) {
+                processQueue(refreshError, null);
+                // Store a flag so the Login page can show an explanation
+                sessionStorage.setItem("session_ended", "1");
+                localStorage.clear();
+                window.location.href = "/login";
+                return Promise.reject(refreshError);
+            } finally {
+                isRefreshing = false;
+            }
+        }
+
         return Promise.reject(error);
     }
 );

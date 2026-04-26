@@ -3,8 +3,8 @@ export const CURRENCY = "৳";
 
 // Automatically uses .env.development locally and .env.production on build.
 // Never edit this line — edit the .env.* files instead.
-// export const ROOT_URL = "http://localhost:3051/api/v/1.0.0";
-export const ROOT_URL = process.env.REACT_APP_API_URL;
+export const ROOT_URL = "http://localhost:3051/api/v/1.0.0";
+// export const ROOT_URL = process.env.REACT_APP_API_URL;
 
 // Derived: strip /api/v/x.x.x to get the bare origin for Socket.IO and image URLs.
 const _ORIGIN = ROOT_URL.replace(/\/api.*$/, "");
@@ -18,8 +18,13 @@ export const UPLOAD_FILE_URL = `${API_URL}/upload`;
 
 // auth
 export const LOGIN_URL = `${API_URL}/auth/login`;
-export const REFRESH_TOKEN = `${API_URL}/login/refresh-token`;
+export const REFRESH_TOKEN = `${API_URL}/auth/refresh`;
+export const VERIFY_LOGIN_OTP_URL = `${API_URL}/auth/verify-login-otp`;
+export const RESEND_LOGIN_OTP_URL = `${API_URL}/auth/resend-login-otp`;
+export const GET_AUTH_DEVICES_URL = `${API_URL}/auth/devices`;
 export const SWITCH_GYM = `${API_URL}/users/switch-gym`;
+export const REFRESH_TOKEN_KEY = 'refresh_token';
+export const DEVICE_ID_KEY = 'admin_device_id';
 
 // user
 export const GET_ALL_USER = `${API_URL}/users`;
