@@ -6,6 +6,12 @@ const useFormItems = (file) => {
             className: "col-span-12",
             type: "textarea",
         },
+        {
+            label: "Required OTP for new device",
+            name: "requiredOtpForNewDevice",
+            className: "col-span-12",
+            type: "switch",
+        },
     ];
 
     return formItems;
