@@ -17,6 +17,7 @@ const useFilterItems = () => {
                 "Gym payment due",
                 "Any sms",
                 "LOGIN_OTP",
+                "PASSKEY_OTP"
             ],
             className: "col-span-6",
         },

@@ -137,6 +137,18 @@ export const UPDATE_BUSINESSEXPENSE_URL = `${API_URL}/businessExpense/update`;
 export const DELETE_BUSINESSEXPENSE_URL = `${API_URL}/businessExpense/delete`;
 export const ADMIN_DASHBOARD_CHECK_DEVICES = `${API_URL}/admin-dashboard/check-devices`;
 export const ADMIN_DASHBOARD_BACKUP = `${API_URL}/admin-dashboard/backup`;
+// gymLead (marketing site enquiries)
+export const GET_ALL_GYMLEAD = `${API_URL}/gym-leads`;
+export const GET_GYMLEAD_BY_ID = `${API_URL}/gym-leads/id`;
+export const UPDATE_GYMLEAD_URL = `${API_URL}/gym-leads/update`;
+export const DELETE_GYMLEAD_URL = `${API_URL}/gym-leads/delete`;
+export const GYMLEAD_STATUSES = ["PENDING", "FOLLOWUP", "DONE", "CANCELED"];
+export const GYMLEAD_STATUS_COLORS = {
+    PENDING: "gold",
+    FOLLOWUP: "blue",
+    DONE: "green",
+    CANCELED: "red",
+};
 // CONSTANT_EXPORTS_AREA
 export const ACCESS_TOKEN = "x-auth-token";
 export const PROFILE = "e-book-profile";

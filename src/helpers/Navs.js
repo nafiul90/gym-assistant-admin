@@ -112,6 +112,14 @@ const SidebarMenus = () => {
             icon: <PieChartOutlined />,
             children: null,
             permissions: [Permission.ALL],
+        },
+        {
+            key: "gym-leads",
+            label: "Gym Enquiries",
+            onClick: () => navigate(PATH.GYMLEAD_LIST_PATH),
+            icon: <PieChartOutlined />,
+            children: null,
+            permissions: [Permission.ALL],
         }, // NAVS_EXPORTS_AREA
         {
             key: "logout",

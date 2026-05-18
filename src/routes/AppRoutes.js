@@ -112,6 +112,10 @@ const EditBusinessExpense = lazy(() =>
 );
 const CheckDevices = lazy(() => import("../components/pages/dashboard/CheckDevices"));
 const DatabaseBackup = lazy(() => import("../components/pages/dashboard/DatabaseBackup"));
+// gymLead
+const GymLeadListView = lazy(() =>
+    import("../components/pages/gym_lead/GymLeadListView")
+);
 // ROUTE_IMPORTS_AREA
 
 const AppRoutes = [
@@ -428,6 +432,13 @@ const AppRoutes = [
         exact: true,
         isPrivate: false,
         component: DatabaseBackup,
+        permissions: [Permission.ALL],
+    },
+    {
+        path: PATH.GYMLEAD_LIST_PATH,
+        exact: true,
+        isPrivate: false,
+        component: GymLeadListView,
         permissions: [Permission.ALL],
     },
 
