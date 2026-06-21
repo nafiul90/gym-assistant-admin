@@ -65,6 +65,13 @@ const useFilterItems = () => {
             className: "col-span-6 md:col-span-4",
         },
         {
+            label: "Access pin",
+            name: "accessListPin",
+            type: "number",
+            placeholder: "",
+            className: "col-span-6 md:col-span-4",
+        },
+        {
             label: "Biotime Id",
             name: "bioTimeId",
             type: "number",

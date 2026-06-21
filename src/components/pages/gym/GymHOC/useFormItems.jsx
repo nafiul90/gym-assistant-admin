@@ -357,6 +357,12 @@ const useFormItems = (fileList) => {
             name: "iosUrl",
             className: "col-span-6",
         },
+        {
+            label: "Id is pin",
+            name: "idIsPin",
+            className: "col-span-6",
+            type: "switch",
+        },
     ];
 
     return formItems;
