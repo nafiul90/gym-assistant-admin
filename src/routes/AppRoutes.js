@@ -116,6 +116,15 @@ const DatabaseBackup = lazy(() => import("../components/pages/dashboard/Database
 const GymLeadListView = lazy(() =>
     import("../components/pages/gym_lead/GymLeadListView")
 );
+const PaymentPackageListView = lazy(() =>
+    import("../components/pages/paymentpackage/PaymentPackageListView")
+);
+const AddPaymentPackage = lazy(() =>
+    import("../components/pages/paymentpackage/AddPaymentPackage")
+);
+const EditPaymentPackage = lazy(() =>
+    import("../components/pages/paymentpackage/EditPaymentPackage")
+);
 // ROUTE_IMPORTS_AREA
 
 const AppRoutes = [
@@ -441,6 +450,28 @@ const AppRoutes = [
         component: GymLeadListView,
         permissions: [Permission.ALL],
     },
+    {
+        path: PATH.PAYMENTPACKAGE_LIST_PATH,
+        exact: true,
+        isPrivate: false,
+        component: PaymentPackageListView,
+        permissions: [Permission.ALL],
+    },
+    {
+        path: PATH.ADD_PAYMENTPACKAGE_PATH,
+        exact: true,
+        isPrivate: false,
+        component: AddPaymentPackage,
+        permissions: [Permission.ALL],
+    },
+    {
+        path: `${PATH.EDIT_PAYMENTPACKAGE_PATH}/:id`,
+        exact: true,
+        isPrivate: false,
+        component: EditPaymentPackage,
+        permissions: [Permission.ALL],
+    },
+    
 
     // ROUTE_DECLARATION_AREA
 ];

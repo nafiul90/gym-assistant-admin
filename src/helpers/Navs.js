@@ -120,6 +120,14 @@ const SidebarMenus = () => {
             icon: <PieChartOutlined />,
             children: null,
             permissions: [Permission.ALL],
+        }, 
+    {
+            key: "paymentPackage",
+            label: "paymentPackage",
+            onClick: () => navigate(PATH.PAYMENTPACKAGE_LIST_PATH),
+            icon: <PieChartOutlined />,
+            children: null,
+            permissions: [Permission.ALL]
         }, // NAVS_EXPORTS_AREA
         {
             key: "logout",

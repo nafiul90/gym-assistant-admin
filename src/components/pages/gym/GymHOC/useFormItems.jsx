@@ -363,6 +363,12 @@ const useFormItems = (fileList) => {
             className: "col-span-6",
             type: "switch",
         },
+        {
+            label: "enabledTimeSchedule",
+            name: "enabledTimeSchedule",
+            className: "col-span-6",
+            type: "switch",
+        },
     ];
 
     return formItems;

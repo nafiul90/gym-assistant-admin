@@ -83,4 +83,9 @@ export const CHECK_DEVICES_PATH = `${ROOT_PATH}check-devices`;
 export const DATABASE_BACKUP_PATH = `${ROOT_PATH}database-backup`;
 // gymLead (marketing site enquiries)
 export const GYMLEAD_LIST_PATH = `${ROOT_PATH}gym-leads`;
+// paymentPackage
+
+export const PAYMENTPACKAGE_LIST_PATH = `${ROOT_PATH}paymentPackage-list`;
+export const ADD_PAYMENTPACKAGE_PATH = `${ROOT_PATH}add-paymentPackage`;
+export const EDIT_PAYMENTPACKAGE_PATH = `${ROOT_PATH}edit-paymentPackage`;
 // SLUGS_EXPORTS_AREA
